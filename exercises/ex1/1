@@ -1,0 +1,11 @@
+
+#Abrir o ficheiro e guardar uma cópia na memória
+with open('dicionario_medico.txt', 'r') as ficheiro:
+    ficheiro_alterado = ficheiro.read()
+
+#Substituir a string \x0c por \n
+ficheiro_alterado = ficheiro_alterado.replace('\x0c','\n')
+
+#Escrever o ficheiro alterado num novo ficheiro
+with open('dicionario_medico.txt', 'w') as ficheiro:
+    ficheiro.write(ficheiro_alterado)
