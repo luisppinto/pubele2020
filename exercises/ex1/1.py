@@ -7,5 +7,3 @@ with open("dicionario_medico.txt", "r") as f:
 
     with open("dicionario_medico_formatado.txt", "w") as o:
         o.write(new_content)
-
-meow
