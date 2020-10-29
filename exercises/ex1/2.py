@@ -14,8 +14,18 @@ def ex2(palavra):
             line = line.rstrip()
             line = sub(palavra,r'@'*palavra,line) #marca a palavra com um @ para ser identificada
 
-            if matches != []: #se houver match na linha
+            if matches: #se houver match na linha
                 num_oco += len(matches)
                 linhas.append(line) #guarda a linha
 
-        for i in line
+        for l in line:
+            print(l+'\n')
+        print("Número total de ocorrências da palavra " + palavra +": ", num_oco)
+
+def main():
+
+    palavra = sys.argv[-1]
+    ex2(palavra)
+
+if __name__ == '__main__':
+    main()
