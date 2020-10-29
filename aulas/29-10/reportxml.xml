@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report>
+  <title>Aula de Publicação Eletrónica</title>
+  <date>29/10/2020</date>
+  <team>
+    <element>
+      <name>Rui Costa</name>
+      <number>83813</number>
+      <email>ruicosta@slb.pt</email>
+    </element>
+    <element>
+      <name>Paulo Jorge</name>
+      <number>84480</number>
+      <email>paulojorge@sapo.pt</email>
+    </element>
+  </team>
+  <description>Descrição da aula de Publicação Eletrónica</description>
+</report>
