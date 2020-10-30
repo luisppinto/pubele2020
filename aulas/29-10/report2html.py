@@ -16,6 +16,12 @@ def extract():
     v=search(r'<date>(.*)</date>',report)
     if v:
         info["Date"]=v[1]
+    v=search(r'<team>(.*)</team>',report)
+    if v:
+        info["Team"]=v[1]
+    v=search(r'<description>(.*)</description>')
+    if v:
+        info["Description"]=v[1]
 
 def subst(file,d):
     with open(file) as f:
