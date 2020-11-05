@@ -1,4 +1,3 @@
-
 import jinja2 as j2
 
 t = j2.Template( """
@@ -19,7 +18,6 @@ t = j2.Template( """
   <hr/>
 </body>
 </html>
-
 """
 )
 

@@ -16,7 +16,7 @@ def extract():
     v=search(r'<date>(.*)</date>',report)
     if v:
         info["Date"]=v[1]
-    return(info)
+    print(info)
 
 def subst(file,d):
     with open(file) as f:
