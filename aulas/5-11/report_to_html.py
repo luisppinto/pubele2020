@@ -1,14 +1,11 @@
 from re import *
 import jinja2  as j2
 
-
-
-
 def extract(): # extrai a informação do relatório em XML
 
 	with open("report.xml") as f:
 		report=f.read()
-	
+
 	info=[]
 
 	labels = findall(r'<.*>',report)
@@ -22,7 +19,6 @@ def extract(): # extrai a informação do relatório em XML
 
 	print(info)
 
-
 def extract2():
 
 	with open("report.xml") as f:
@@ -35,9 +31,6 @@ def extract2():
 
 
 	print(info)
-
-
-
 # recebe uma lista com title,date,team e description e devolve um dicionário com a info xml dessas tags
 
 def refile(filename): # devolve texto
@@ -46,7 +39,6 @@ def refile(filename): # devolve texto
 		report=f.read()
 
 	return report
-
 
 def extract_dict(l,report): # devolve dicionário
 
@@ -58,7 +50,6 @@ def extract_dict(l,report): # devolve dicionário
 
 	return info
 
-
 def extrai_listaH(xml,tag):
 
 	info = []
@@ -67,7 +58,6 @@ def extrai_listaH(xml,tag):
 		info.append(miolo)
 
 	return info
-
 
 def preenche2(info):
 
@@ -99,12 +89,12 @@ def preenche2(info):
 
 
 def main():
-	
+
 	#info = extract()
-	f = refile('report.xml') 
-	dic = extract_dict(['title','team','date','description'],f) 
+	f = refile('report.xml')
+	dic = extract_dict(['title','team','date','description'],f)
 	aux = extrai_listaH(dic['team'],'element')
-	
+
 
 
 	'''nova_lista = []
@@ -112,11 +102,11 @@ def main():
 		res = extract_dict(['name','email'],el)
 		nova_lista.append(res)
 	dic['team'] = nova_lista'''
-	
+
 	# as últimas 5 linhas fazem o mesmo que esta linha seguinte
-	
+
 	dic['team'] = [extract_dict(['name','email'],el) for el in aux]
 	preenche2(dic)
-	
+
 
 main()
