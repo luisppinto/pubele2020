@@ -1,5 +1,5 @@
 from re import *
-import jinja2  as j2
+import jinja2 as j2
 
 def extract(): # extrai a informação do relatório em XML
 
