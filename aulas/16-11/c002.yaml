@@ -1,0 +1,21 @@
+--- #YAML é fácil de ler e escrever, também se uxa JSON e XML
+type: carta
+destinatário: Eurico Tomás de Lima #dicionário -> chave1: exemplo
+remetente: Ludovina Frias de Matos
+data: 1965-10-21
+local_o: Porto
+descrição:
+  dá os parabéns
+  pelo novo cargo
+  ... na Madeira
+files:
+  - f1.jpg #lista -> -exemplo
+  - f3.jpg
+  - f4.jpg
+---
+type: foto
+descrição: |
+  foto de grupo com...
+infoto:
+  - Eurico Tomás de Lima
+  - Rui
