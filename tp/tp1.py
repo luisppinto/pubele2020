@@ -133,7 +133,7 @@ def extractmulti():
 
     ad = bs(d,"xml")
 
-    for i in ad.find_all("title"):
+    for i in ad.find_all("titulo"):
         print("##",i.text)
         aux1=i.parent.resource
         if aux1:
