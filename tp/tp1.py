@@ -83,8 +83,7 @@ def extrai_listaH(xml,tag):
 	return info
 
 def preenche2(info):
-
-	t = j2.Template( """
+	t = j2.Template("""
 <html>
 <head>
   <title> {{título}} </title>
@@ -98,18 +97,17 @@ def preenche2(info):
  <p> {{descrição}} </p>
 </body>
 </html>
-
 """)
 
 	print(t.render(info))
 
-def index():
+def index(index):
 
     index=j2.Template("""
     <!DOCTYPE html>
 <html>
 	<head>
-		<title>Index</title>
+		<title>Catálogo de CDs</title>
 		<meta charset="utf-8"/>
 	</head>
 
@@ -124,16 +122,17 @@ def index():
 
 </html>
 """)
+    print(index.render(index))
 
-def extractmulti():
+def extractmulti(dic):
 
-    file="../pubele2020/tp/catalogotp1.xml"
+    file="catalogotp1.xml"
     with open(file) as f:
         d=f.read()
 
     ad = bs(d,"xml")
 
-    for i in ad.find_all("titulo"):
+    for i in ad.find_all("título"):
         print("##",i.text)
         aux1=i.parent.resource
         if aux1:
@@ -147,11 +146,9 @@ def extractmulti():
 
 def main():
 
-	#info = extract()
 	f = refile('catalogotp1.xml')
 	dic = extract_dict(['título','artista','ano','preço','descrição','país','produtora'],f)
 	aux = extrai_listaH(dic['artista'],'element')
-	#dic['artista'] = [extract_dict(['name','email'],el) for el in aux]
 	preenche2(dic)
 
 main()
