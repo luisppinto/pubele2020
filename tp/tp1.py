@@ -31,7 +31,7 @@ Sugestões:
 para demonstração.'''
 
 def extract(): # extrai a informação do relatório em XML
-	with open("report.xml") as f:
+	with open("catalogotp1.xml") as f:
 		report=f.read()
 	info=[]
 	labels = findall(r'<.*>',report)
@@ -44,7 +44,7 @@ def extract(): # extrai a informação do relatório em XML
 
 def extract2():
 
-	with open("report.xml") as f:
+	with open("catalogotp1.xml") as f:
 		report=f.read()
 
 	info = []
@@ -87,22 +87,15 @@ def preenche2(info):
 	t = j2.Template( """
 <html>
 <head>
-  <title> {{title}} </title>
+  <title> {{título}} </title>
   <meta charset="UTF-8"/>
 </head>
 <body>
- <h1> {{title}} </h1>
- <p> {{date}} </p>
- <h2>Autores</h2>
- <hr/>
- <ol>
-    {% for el in team  %}
-      <li> {{el['name']}} : {{el['email']}} </li>
-    {% endfor %}
- </ol>
- <hr/>
+ <h1>{{título}}</h1>
+ <h2>{{artista}}</h2>
+ <p><b>Ano: </b>{{ano}} <b>País: </b>{{país}} <b>Produtora: </b>{{produtora}}</p>
  <h2> Descrição </h2>
- <p> {{description}} </p>
+ <p> {{descrição}} </p>
 </body>
 </html>
 
@@ -112,8 +105,7 @@ def preenche2(info):
 
 def index():
 
-
-
+    index=j2.Template("""
     <!DOCTYPE html>
 <html>
 	<head>
@@ -131,11 +123,11 @@ def index():
 	</body>
 
 </html>
-
+""")
 
 def extractmulti():
 
-    file="../pubele2020/tp/catalogotp.xml"
+    file="../pubele2020/tp/catalogotp1.xml"
     with open(file) as f:
         d=f.read()
 
@@ -156,10 +148,10 @@ def extractmulti():
 def main():
 
 	#info = extract()
-	f = refile('report.xml')
-	dic = extract_dict(['title','team','date','description'],f)
-	aux = extrai_listaH(dic['team'],'element')
-	dic['team'] = [extract_dict(['name','email'],el) for el in aux]
+	f = refile('catalogotp1.xml')
+	dic = extract_dict(['título','artista','ano','preço','descrição','país','produtora'],f)
+	aux = extrai_listaH(dic['artista'],'element')
+	#dic['artista'] = [extract_dict(['name','email'],el) for el in aux]
 	preenche2(dic)
 
 main()
