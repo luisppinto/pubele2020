@@ -1,50 +1,10 @@
 from re import *
 import jinja2 as j2
 import lxml
-from bs4 import BeautifulSoup as bs
+'''
+def extract():
 
-
-'''Generalizar o conversor relatórios → html de modo a que
-
-1) passe a permitir vários relatórios (presentemente
-só aceita um relatório): no XML juntar uma nova raíz
-por exemplo "portfolio" debaixo da qual fiquem os vários
-"report".
-Sugestão:
-    * cada report gerar uma página html separada
-    * construir um índice geral que permita aceder
-à página de cada projecto.
-
-2) permita a existência de um novo elemento com o link
-para um ficheiro
-(correspondente ao código do projecto)
-
-3) Extras: se conseguir, faça os extras que se lembrar!
-
-Sugestões:
-  * arrange uma página com bom aspecto...
-  * crie um índice de autores.
-  * Permita que a description inclua "hashtags" (exemplo
-"#história") e crie uma página índice (hastag → reports)
-
-4) Faço um portfolio.xml exemplo (que seja convincente)
-para demonstração.'''
-
-def extract(): # extrai a informação do relatório em XML
-	with open("catalogotp1.xml") as f:
-		report=f.read()
-	info=[]
-	labels = findall(r'<.*>',report)
-	for label in labels:
-		chave=search(r'</(.*)>',label)
-		v=search(r'>(.*)<',label)
-		if v:
-			info.append((chave[1],v[1]))
-	print(info)
-
-def extract2():
-
-	with open("catalogotp1.xml") as f:
+	with open("report.xml") as f:
 		report=f.read()
 
 	info = []
@@ -52,18 +12,16 @@ def extract2():
 	for tag,miolo in findall(r'<(.*?)>(.*?)</\1>',report):
 		info.append((tag,miolo))
 
-
 	print(info)
-# recebe uma lista com title,date,team e description e devolve um dicionário com a info xml dessas tags
-
-def refile(filename): # devolve texto
+'''
+def refile(filename):
 
 	with open(filename) as f:
 		report=f.read()
 
 	return report
 
-def extract_dict(l,report): # devolve dicionário
+def extract_dict(l,report): #devolve dicionario
 
 	info = {}
 	for elem in l:
@@ -73,82 +31,54 @@ def extract_dict(l,report): # devolve dicionário
 
 	return info
 
-def extrai_listaH(xml,tag):
-
-	info = []
-
-	for miolo in findall(rf'<{tag}>((?:.|\n)*?)</{tag}>',xml):
-		info.append(miolo)
-
-	return info
-
-def preenche2(info):
+def preenche(info):
 	t = j2.Template("""
 <html>
 <head>
-  <title> {{título}} </title>
+{% for elem in info %}
+  <title> {{ elem.title }} </title>
+ {% endfor %}
   <meta charset="UTF-8"/>
 </head>
 <body>
- <h1>{{título}}</h1>
- <h2>{{artista}}</h2>
- <p><b>Ano: </b>{{ano}} <b>País: </b>{{país}} <b>Produtora: </b>{{produtora}}</p>
+    {% for elem in info %}
+ <h1>{{title}}</h1>
+ <h2>{{artist}}</h2>
+ <p><b>Ano: </b>{{year}} <b>País: </b>{{country}} <b>Produtora: </b>{{company}}</p>
  <h2> Descrição </h2>
- <p> {{descrição}} </p>
+ <p> {{description}} </p>
+    {% endfor %}
 </body>
 </html>
 """)
-
 	print(t.render(info))
 
-def index(index):
+def indice(info):
 
-    index=j2.Template("""
+    i = j2.Template("""
     <!DOCTYPE html>
-<html>
-	<head>
-		<title>Catálogo de CDs</title>
-		<meta charset="utf-8"/>
-	</head>
-
-	<body>
-		<h1>Index</h1>
-		<hr>
-		<a href="page1.html">Page 1</a><br>
-		<a href="page2.html" target="_blank">Page 2</a><br>
-		<a href="page3.html" title="Go to Page 3">Page 3</a><br>
-		<a href="page4.html" title="Go to Page 4" target="_blank">Page 4</a><br>
-	</body>
-
-</html>
-""")
-    print(index.render(index))
-
-def extractmulti(dic):
-
-    file="catalogotp1.xml"
-    with open(file) as f:
-        d=f.read()
-
-    ad = bs(d,"xml")
-
-    for i in ad.find_all("título"):
-        print("##",i.text)
-        aux1=i.parent.resource
-        if aux1:
-            print(f'[Link]({aux1.text})')
-        aux2=i.parent.description
-        if aux2:
-            print(aux2.text)
-
-
-
+    <html>
+    <head>
+    	<title>Catálogo de CDs</title>
+    	<meta charset="utf-8"/>
+    </head>
+    	<body>
+    	<h1>Índice</h1>
+    	<hr>
+    	<ol>
+           {% for el in info %}
+             <li><a href="{{ cd.url }}">{{ cd.title }}</a></li>
+           {% endfor %}
+            </ol><br>
+    	</body>
+    </html>
+    """)
+    print(i.render(info))
 
 def main():
 
 	f = refile('catalogotp1.xml')
-	dic = extract_dict(['título','artista','ano','preço','descrição','país','produtora'],f)
-	aux = extrai_listaH(dic['artista'],'element')
-	preenche2(dic)
+	dic = extract_dict(['title','artist','year','description','country','company'],f)
+	preenche(dic)
 
 main()
