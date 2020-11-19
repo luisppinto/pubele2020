@@ -6,7 +6,7 @@ with open("catalogotp1.xml") as f:
 cds = []
 for tag,miolo in findall(r'<(.*?)>(.*?)</\1>',report):
 	cds.append((tag,miolo))
-#print(cds)
+print(cds)
 
 info = []
 for miolo in findall(rf'<{tag}>((?:.|\n)*?)</{tag}>',xml):

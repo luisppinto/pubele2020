@@ -1,10 +1,11 @@
 from re import *
 import jinja2 as j2
 import lxml
+from bs4 import BeautifulSoup as bs
 '''
 def extract():
 
-	with open("report.xml") as f:
+	with open("catalogotp1.xml") as f:
 		report=f.read()
 
 	info = []
@@ -22,31 +23,48 @@ def refile(filename):
 	return report
 
 def extract_dict(l,report): #devolve dicionario
+	with open('catalogotp1.xml') as f:
+	    d=f.read()
 
+	ad = bs(d,"xml")
+
+	for i in ad.find_all("CD"):
+		print(i.text)
+	    #print("TITLE",i.text)
+		aux1=i.parent.title
+		print(aux1)
+		if aux1:
+			print(aux1)
+		    print(f'[Link]({aux1.text})')
+		aux2=i.parent.description
+		if aux2:
+			print(aux2.text)
+'''
 	info = {}
 	for elem in l:
 		v=search(rf"<{elem}>((?:.|\n)*?)</{elem}>",report)
 		if v:
 			info[elem]=v[1]
 
-	return info
-
+	print(info)
+'''
 def preenche(info):
 	t = j2.Template("""
 <html>
 <head>
 {% for elem in info %}
-  <title> {{ elem.title }} </title>
+  <title> {{ title }} </title>
  {% endfor %}
   <meta charset="UTF-8"/>
 </head>
 <body>
-    {% for elem in info %}
+	 {{CD}}
+    {% for elem in f %}
  <h1>{{title}}</h1>
  <h2>{{artist}}</h2>
- <p><b>Ano: </b>{{year}} <b>País: </b>{{country}} <b>Produtora: </b>{{company}}</p>
+ <p><b>Ano: </b>{{year}}<b>País: </b>{{country}}<b>Produtora: </b>{{company}}</p>
  <h2> Descrição </h2>
- <p> {{description}} </p>
+ <p>{{description}}</p>
     {% endfor %}
 </body>
 </html>
@@ -67,7 +85,7 @@ def indice(info):
     	<hr>
     	<ol>
            {% for el in info %}
-             <li><a href="{{ cd.url }}">{{ cd.title }}</a></li>
+             <li><a href="{{title}}.html">{{ title }}</a></li>
            {% endfor %}
             </ol><br>
     	</body>
@@ -78,7 +96,7 @@ def indice(info):
 def main():
 
 	f = refile('catalogotp1.xml')
-	dic = extract_dict(['title','artist','year','description','country','company'],f)
+	dic = extract_dict(['title','artist','year','company','description','country'],f)
 	preenche(dic)
 
 main()
