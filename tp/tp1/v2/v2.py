@@ -11,11 +11,11 @@ cd=[]
 def get_titulos():
 	# Faz uma lista com todos os títulos de cds presentes no catalogotp1.xml
 	# para ser usado no index()
-		with open('catalogotp1.xml') as f:
-				d=f.read()
-				ad = bs(d,"xml")
-				for i in ad.find_all("CD"):
-						lista_cds.append(i.title.text)
+	with open('catalogotp1.xml') as f:
+		d=f.read()
+		ad = bs(d,"xml")
+		for i in ad.find_all("CD"):
+			lista_cds.append(i.title.text)
 
 def get_cd():
 	# Faz uma lista com todos os cds (e os respetivos conteúdos) presentes no catalogotp1.xml
