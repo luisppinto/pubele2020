@@ -27,7 +27,7 @@ def get_cd():
 			cd.append(i.parent)
 
 def create_page(cd, lista_cds):
-	t = j2.Template("""
+	page = j2.Template("""
 <html>
 	<head>
 		{% for el in cd %}
@@ -48,13 +48,14 @@ def create_page(cd, lista_cds):
 </html>
 """)
 	count=0
-	for i in cd: # Permite o output de um ficheiro por cada elemento da lista
-		count += 1
-		filename = '{}.html'.format(count) # !!! FALTA MUDAR O NOME PARA O NOME DE CADA title !!!
-		with open(filename, 'w') as f_out:
-			f_out.write('{}'.format(i))
-			sys.stdout = f_out
-			print(t.render({"cd":cd}), file=f_out)
+	for title in lista_cds:
+		for i in cd:
+			with open('{}.html'.format(title), 'a') as f_output:
+				f_output.write('{}'.format(i))
+			#for i in cd: # Permite o output de um ficheiro por cada elemento da lista
+			#	count += 1
+				#filename = '{}.html'.format(count) # !!! FALTA MUDAR O NOME PARA O NOME DE CADA title !!!
+			#	f_output.write('{}'.format(i))
 
 def index(lista_cds):
 	# Cria índice (com hiperligação) de todos os cds presentes no catalogotp1.xml
