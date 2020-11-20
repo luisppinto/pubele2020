@@ -3,6 +3,7 @@ import jinja2 as j2 # Usado em create_page() e index()
 import lxml
 from bs4 import BeautifulSoup as bs # Usado em get_titulos() e get_cd()
 import sys # Usado em index()
+import os # Usado em create_page()
 
 lista_cds=[]
 cd=[]
@@ -25,35 +26,35 @@ def get_cd():
 		for i in ad.find_all("title"): # !!! ESTÁ A DEVOLVER O title COM AS TAGS !!! NÃO PODE !!!
 			cd.append(i.parent)
 
-def create_page(cd):
+def create_page(cd, lista_cds):
+	t = j2.Template("""
+<html>
+	<head>
+		{% for el in cd %}
+			{{el.title}}
+		{% endfor %}
+		<meta charset="UTF-8"/>
+	</head>
+	<body>
+		{% for el in cd %}
+			<h1>{{el.title}}</h1>
+			<h2>{{el.artist}}</h2>
+			<p><b>Ano: </b>{{el.year}}<b>País: </b>{{el.country}}<b>Produtora: </b>{{el.company}}</p>
+			<h2> Descrição </h2>
+			<p>{{el.description}}</p>
+			<a href="index.html">Voltar ao índice</a>
+		{% endfor %}
+	</body>
+</html>
+""")
 	count=0
 	for i in cd: # Permite o output de um ficheiro por cada elemento da lista
 		count += 1
 		filename = '{}.html'.format(count) # !!! FALTA MUDAR O NOME PARA O NOME DE CADA title !!!
 		with open(filename, 'w') as f_out:
-			f_out.write('{}\n'.format(i))
-
-		# !!! FALTA IMPLEMENTAR O TEMPLATE A SEGUIR !!!
-		'''t = j2.Template("""
-	<html>
-		<head>
-			{% for el in cd %}
-				{{el.title}}
-			{% endfor %}
-			<meta charset="UTF-8"/>
-		</head>
-		<body>
-			{% for el in cd %}
-				<h1>{{el.title}}</h1>
-				<h2>{{el.artist}}</h2>
-				<p><b>Ano: </b>{{el.year}}<b>País: </b>{{el.country}}<b>Produtora: </b>{{el.company}}</p>
-				<h2> Descrição </h2>
-				<p>{{el.description}}</p>
-			{% endfor %}
-		</body>
-	</html>
-	""")
-	print(a.render({"cd":cd}))'''
+			f_out.write('{}'.format(i))
+			sys.stdout = f_out
+			print(t.render({"cd":cd}), file=f_out)
 
 def index(lista_cds):
 	# Cria índice (com hiperligação) de todos os cds presentes no catalogotp1.xml
@@ -81,7 +82,7 @@ def index(lista_cds):
 def main():
 	get_titulos()
 	get_cd()
-	create_page(cd)
+	create_page(cd, lista_cds)
 	index(lista_cds)
 	#print(lista_cds) # Ver lista com títulos dos cds
 	#print(cd) # Ver lista com cds e respetivos conteúdos
