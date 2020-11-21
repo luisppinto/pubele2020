@@ -7,6 +7,7 @@ import os # Usado em create_page()
 
 lista_cds=[]
 cd=[]
+cd_temp=[]
 
 def get_titulos():
 	# Faz uma lista com todos os títulos de cds presentes no catalogotp1.xml
@@ -39,7 +40,7 @@ def create_page(cd, lista_cds):
 		{% for el in cd %}
 			<h1>{{el.title}}</h1>
 			<h2>{{el.artist}}</h2>
-			<p><b>Ano: </b>{{el.year}}<b>País: </b>{{el.country}}<b>Produtora: </b>{{el.company}}</p>
+			<p><b>Ano: </b>{{el.year}} <b>País: </b>{{el.country}} <b>Produtora: </b>{{el.company}} </p>
 			<h2> Descrição </h2>
 			<p>{{el.description}}</p>
 			<a href="index.html">Voltar ao índice</a>
@@ -87,7 +88,7 @@ def main():
 	get_titulos()
 	get_cd()
 	create_page(cd, lista_cds)
-	index(lista_cds)
+	#index(lista_cds)
 	#print(lista_cds) # Ver lista com títulos dos cds
 	#print(cd) # Ver lista com cds e respetivos conteúdos
 main()
