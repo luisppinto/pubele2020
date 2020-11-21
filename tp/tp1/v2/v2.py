@@ -5,9 +5,8 @@ from bs4 import BeautifulSoup as bs # Usado em get_titulos() e get_cd()
 import sys # Usado em index()
 import os # Usado em create_page()
 
-lista_cds=[]
-cd=[]
-cd_temp=[]
+lista_cds=[] # Lista vazia (a preencher por get_titulos()) de todos os títulos dos cds
+cd=[] # Lista vazia (a preencher por get_cd()) de todos os cds e respetivos conteúdos
 
 def get_titulos():
 	# Faz uma lista com todos os títulos de cds presentes no catalogotp1.xml
@@ -25,26 +24,22 @@ def get_cd():
 		d=f.read()
 		ad = bs(d,"xml")
 		for i in ad.find_all("title"): # !!! ESTÁ A DEVOLVER O title COM AS TAGS !!! NÃO PODE !!!
-			cd.append(i.parent)
+			cd.append(i.parent.text)
 
 def create_page(cd, lista_cds):
 	page = j2.Template("""
 <html>
 	<head>
-		{% for el in cd %}
-			{{el.title}}
-		{% endfor %}
+			{{title}}
 		<meta charset="UTF-8"/>
 	</head>
 	<body>
-		{% for el in cd %}
-			<h1>{{el.title}}</h1>
-			<h2>{{el.artist}}</h2>
-			<p><b>Ano: </b>{{el.year}} <b>País: </b>{{el.country}} <b>Produtora: </b>{{el.company}} </p>
+			<h1>{{title}}</h1>
+			<h2>{{artist}}</h2>
+			<p><b>Ano: </b>{{year}} <b>País: </b>{{country}} <b>Produtora: </b>{{company}} </p>
 			<h2> Descrição </h2>
-			<p>{{el.description}}</p>
+			<p>{{description}}</p>
 			<a href="index.html">Voltar ao índice</a>
-		{% endfor %}
 	</body>
 </html>
 """)
