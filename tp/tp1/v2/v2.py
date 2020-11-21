@@ -23,10 +23,11 @@ def get_cd():
 	with open('catalogotp1.xml') as f:
 		d=f.read()
 		ad = bs(d,"xml")
-		for i in ad.find_all("title"): # !!! ESTÁ A DEVOLVER O title COM AS TAGS !!! NÃO PODE !!!
+		for i in ad.find_all("title"):
 			cd.append(i.parent.text)
 
 def create_page(cd, lista_cds):
+
 	page = j2.Template("""
 <html>
 	<head>
@@ -43,18 +44,12 @@ def create_page(cd, lista_cds):
 	</body>
 </html>
 """)
-	#count=0
+
 	for title in lista_cds:
 		for i in cd:
-			#with open('{}.html'.format(title), 'a') as f_output:
 			f_output2 = open('{}.html'.format(title), 'w')
 			sys.stdout = f_output2
 			print(page.render({"cd":cd}), file=f_output2)
-				#f_output.write('{}'.format(i))
-			#for i in cd: # Permite o output de um ficheiro por cada elemento da lista
-			#	count += 1
-				#filename = '{}.html'.format(count) # !!! FALTA MUDAR O NOME PARA O NOME DE CADA title !!!
-			#	f_output.write('{}'.format(i))
 
 def index(lista_cds):
 	# Cria índice (com hiperligação) de todos os cds presentes no catalogotp1.xml
