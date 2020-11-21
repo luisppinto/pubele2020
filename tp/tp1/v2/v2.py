@@ -47,11 +47,14 @@ def create_page(cd, lista_cds):
 	</body>
 </html>
 """)
-	count=0
+	#count=0
 	for title in lista_cds:
 		for i in cd:
-			with open('{}.html'.format(title), 'a') as f_output:
-				f_output.write('{}'.format(i))
+			#with open('{}.html'.format(title), 'a') as f_output:
+			f_output2 = open('{}.html'.format(title), 'w')
+			sys.stdout = f_output2
+			print(page.render({"cd":cd}), file=f_output2)
+				#f_output.write('{}'.format(i))
 			#for i in cd: # Permite o output de um ficheiro por cada elemento da lista
 			#	count += 1
 				#filename = '{}.html'.format(count) # !!! FALTA MUDAR O NOME PARA O NOME DE CADA title !!!
