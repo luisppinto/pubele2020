@@ -35,7 +35,7 @@ def create_page(cd):
 """)
 
 	for i in cd:
-		context="{"
+		context=[]
 		title = i.title
 		artist = i.artist
 		year = i.year
@@ -45,22 +45,22 @@ def create_page(cd):
 		
 		if title != None:
 			title =i.title.text
-			context = context + "'title':title, "
+			context.append(title)
 		if artist != None:
 			artist = i.artist.text 
-			context = context + "'artist':artist, "
+			context.append(artist)
 		if year != None:
 			year = i.year.text
-			context = context + "'year':year, "
+			context.append(year)
 		if country != None:
 			country = i.country.text
-			context = context + "'country':country, "
+			context.append(country)
 		if company != None:
 			company = i.company.text
-			context = context + "'company':company, "
+			context.append(company)
 		if description != None:
 			description = i.description.text
-			context = context + "'description':description}"
+			context.append(description)
 		
 		print(context)
 		f_output = open('{}.html'.format(title),'w')
