@@ -42,12 +42,12 @@ def create_page(cd):
 		country = i.country
 		company = i.company
 		description = i.description
-		
+
 		if title != None:
 			title =i.title.text
 			context = context + "'title':title, "
 		if artist != None:
-			artist = i.artist.text 
+			artist = i.artist.text
 			context = context + "'artist':artist, "
 		if year != None:
 			year = i.year.text
@@ -61,7 +61,7 @@ def create_page(cd):
 		if description != None:
 			description = i.description.text
 			context = context + "'description':description}"
-		
+
 		print(context)
 		f_output = open('{}.html'.format(title),'w')
 		print(page.render(context=context), file=f_output)
