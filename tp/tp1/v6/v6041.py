@@ -133,7 +133,6 @@ def index(cd):
 	indice = 'file:///'+os.getcwd()+'/' + 'index.html'
 	webbrowser.open_new_tab(indice)
 
-
 def relatorio():
 	k = j2.Template('''
 <!DOCTYPE html>
