@@ -103,13 +103,13 @@ def relatorio():
 			<meta charset="UTF-8">
 			<title>Relatório</title>
 		</head>
-		<body> 
+		<body>
 			<h1>Relatório</h1>
 			<h2> Ficheiro Catálogotp1.xml </h2>
-			 <p> 
+			 <p>
 			 	O ficheiro Catálogotp1.xml contém um conjunto de dados relativos a CDs de Música.<br>
 				Estes CDs contém um titulo, de caracter obrigatório, contém ainda um artista, um país, uma produtora, uma descrição e um ano.<br>
-				Abaixo podemos ver um excerto de código em XML: 
+				Abaixo podemos ver um excerto de código em XML:
 			</p>
 			<p>
 				&ltCATALOG&gt<br>
@@ -127,22 +127,22 @@ def relatorio():
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltcompany&gtCBS Records&lt/company&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdescription&gtHide Your Heart (released under the title Notes from America in the United States, Canada and Brazil), is the seventh studio album by Welsh singer Bonnie Tyler.&lt/description&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltyear&gt1988&lt/year&gt &lt/CD&gt<br>
-				...			
+				...
 			</p>
 			<h2> Nome do Ficheiro.py </h2>
 			<p>
 				O ficheiro que deu origem a todo o website começa pelo import das librarias necessárias na resolução de algoritmos.
 			</p>
 			<p>
-				&nbsp&nbsp&nbsp from re import * <br>                          
-				&nbsp&nbsp&nbsp import jinja2 as j2<br>                    
-				&nbsp&nbsp&nbsp import lxml<br>                         
-				&nbsp&nbsp&nbsp from bs4 import BeautifulSoup as bs <br>    
-				&nbsp&nbsp&nbsp import sys<br>                 
-				&nbsp&nbsp&nbsp import os<br>                
-				&nbsp&nbsp&nbsp import webbrowser               
-			</p>           
-			<p> 
+				&nbsp&nbsp&nbsp from re import * <br>
+				&nbsp&nbsp&nbsp import jinja2 as j2<br>
+				&nbsp&nbsp&nbsp import lxml<br>
+				&nbsp&nbsp&nbsp from bs4 import BeautifulSoup as bs <br>
+				&nbsp&nbsp&nbsp import sys<br>
+				&nbsp&nbsp&nbsp import os<br>
+				&nbsp&nbsp&nbsp import webbrowser
+			</p>
+			<p>
 				Seguiu-se a inicialização das variáveis globais:
 			</p>
 			<p>
@@ -186,7 +186,7 @@ def relatorio():
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp """)
 				&nbsp&nbsp&nbsp for i in cd:
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp title.append(i.title.text)
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp f_output = open('index.html', 'w') 
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp f_output = open('index.html', 'w')
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp print(a.render({'title':title}), file=f_output)
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp indice = 'file:///'+os.getcwd()+'/' + 'index.html'
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp webbrowser.open_new_tab(indice)
@@ -194,7 +194,7 @@ def relatorio():
 			<p>
 				Esta função consiste em criar um indice de CDs. Recebe como argumento o conteúdo dos CDs obtidos em get_cd().<br>
 				Cria um template que vai dar origem ao ficheiro index.html, em que para cada CD usamos o titulo do mesmo para criar as hiperligações necessárias.<br>
-				Por fim implementamos uma função de abertura do index.html automática após correr o programa. 
+				Por fim implementamos uma função de abertura do index.html automática após correr o programa.
 			</p>
 			<h3>Função main()</h3>
 			<p>
@@ -206,7 +206,7 @@ def relatorio():
 				&nbsp&nbsp&nbsp main()
 			</p>
 			<p>
-				Esta função basicamente corre todos as funções nele contidas. 
+				Esta função basicamente corre todos as funções nele contidas.
 			</p>
 			<br>
 			<a href="index.html">Voltar ao índice</a>
@@ -214,7 +214,7 @@ def relatorio():
 	</html>
 ''')
 	f_out = open('relatorio.html', 'w', encoding='utf-8')
-	print(file=f_out)
+	print(k.render(), file=f_out)
 
 def main():
 	get_codigo()
@@ -222,6 +222,6 @@ def main():
 	create_page(cd)
 	index(cd)
 	relatorio()
-	
+
 	#print(cd) # Ver lista com cds e respetivos conteúdos
 main()
