@@ -19,7 +19,7 @@ artist=[]
 cd_artista=[]
 
 def get_codigo():
-	with open('v6051.py', encoding='utf-8') as original, open('codigo.txt', "w", encoding='utf-8') as target:
+	with open('v666.py', encoding='utf-8') as original, open('codigo.txt', "w", encoding='utf-8') as target:
 		target.writelines(original.readlines())
 
 def get_cd():
@@ -48,6 +48,7 @@ def create_page(cd):
 						<th><a href="index.html"><div class="hed">Lista de Títulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
 						<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
+						<th><a href="index_autores.html"><div class="hed">Autores</div></a></th>
 				</tr>
 						</table>
 		</div>
@@ -109,16 +110,13 @@ def index(cd):
 		<div class="header">
 				<h1>Catálogo de CDs</h1>
 		</div>
-		<form style="text-align:center" name="search" action="search.py" method="get">
-				<input type="text" name="searchbox">
-				<input type="submit" value="Procurar">
-		</form><br>
 		<div class="nav">
 			<table class="nav-tab">
 				<tr>
 						<th><a href="index.html"><div class="hed">Lista de Títulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
 						<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
+						<th><a href="index_autores.html"><div class="hed">Autores</div></a></th>
 				</tr>
 						</table>
 		</div>
@@ -145,6 +143,10 @@ def index(cd):
 	webbrowser.open_new_tab(indice)
 
 def relatorio():
+
+	# Cria um relatorio.html com a explicação do código e outras informações dos autores
+	# Adicionalmente, cria um stylesheet.css que irá dar brilho a todas as páginas html
+
 	k = j2.Template('''
 <!DOCTYPE html>
 	<html>
@@ -159,13 +161,14 @@ def relatorio():
 		</div>
 
 		<div class="nav">
-			<table>
+			<table class="nav-tab">
 				<tr>
-					<th><a href="index.html"><div class="hed">Lista de Títulos</div></a></th>
+						<th><a href="index.html"><div class="hed">Lista de Títulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
-										<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
-								</tr>
-			</table>
+						<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
+						<th><a href="index_autores.html"><div class="hed">Autores</div></a></th>
+				</tr>
+						</table>
 		</div>
 		<div class="main_content">
 			<h1>Relatório</h1>
@@ -245,6 +248,7 @@ def relatorio():
 			<p class="conteudo_relatorio">
 				Esta função consiste na criação individual de cada página de cd. Recebe como argumento o conteúdo dos CDs obtidos em get_cd().<br>
 				Cria um template que vai dar origem ao ficheiro com o nome do título do cd + ".html".<br>
+				Adicionou-se, no template, um pequeno extra que devolve a bandeira do país do artista.<br>
 				De seguida, iniciou-se um loop que irá preencher o template com o conteúdo do cd.<br>
 				Para isso, fomos buscar o conteúdo de cada cd como o artwork através do i.artwork.<br>
 				Ainda se implementou um if para cada variável, pois pode haver casos onde não existe artwork ou year, que adiciona os valores num dicionário.</br>
@@ -301,7 +305,7 @@ def relatorio():
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	create_page(cd)<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	index(cd)<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  relatorio()<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  search()<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  index_autores(cd)<br>
 				&nbsp&nbsp&nbsp main()
 			</p>
 			<p class="conteudo_relatorio">
@@ -345,10 +349,10 @@ def relatorio():
 
 							}
 								th {
-								width:33%;
+								width:25%;
 								}
 								div.hed {border: 1px solid black;
-										background-color:grey;
+										background-color:lightslategrey;
 										padding-top: 15px;
 										padding-bottom: 15px;
 										text-align:center;
@@ -408,18 +412,6 @@ def relatorio():
 	f_out_stylesheet = open('stylesheet.css', 'w', encoding='utf-8')
 	print(st.render(), file=f_out_stylesheet)
 
-def search():
-
-	with open('catalogotp1.xml') as f:
-		d = f.read()
-		ad = bs(d,"xml")
-		intent = input("Pretende procurar algum CD? s/n")
-		if intent == s:
-			qual = input("Que CD prentende procurar?")
-			results = ad.find_all(string=re.compile(qual))
-			open = 'file:///'+os.getcwd()+'/'+results+'.html'
-			webbrowser.open_new_tab(open)
-
 def index_autores(cd):
 
 	# Cria índice (com hiperligação) de todos os autores presentes no catalogotp1.xml
@@ -439,24 +431,20 @@ def index_autores(cd):
 		<div class="nav">
 			<table class="nav-tab">
 				<tr>
-					<th><a href="index_autores.html">Lista de Artistas</a></th>
-					<th><a href="relatorio.html">Relatório</a></th>
-					<th><a href="codigo.txt">Código</a></th>
-								</tr>
-							</table>
+						<th><a href="index.html"><div class="hed">Lista de Títulos</div></a></th>
+						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
+						<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
+						<th><a href="index_autores.html"><div class="hed">Autores</div></a></th>
+				</tr>
+						</table>
 		</div>
-
 		<div class="main_content">
 			<table>
-
-						{% for el in artist %}
+				{% for value in newdic %}
 				<tr>
-								<th><a href="{{el}}.html"><div class="hiper">{{el}}</div></a></th>
-
+					<th><a href="{{ value["title"] }}.html"><div class="hiper">{{ value["artist"] }}</div></a></th>
 				</tr>
-
 				{% endfor %}
-
 			</table>
 		</div>
 		</body>
@@ -464,26 +452,22 @@ def index_autores(cd):
 	""")
 
 	for i in cd:
-		artist.append(i.artist.text)
-		cd_artista.append(i.parent.title.text)
-		#print(cd_artista)
-		f_output = open('index_autores.html', 'w', encoding='utf-8') #Cria ficheiro index_autores.html automaticamente
-		print(a.render({'artist':artist}), file=f_output)
-	indice_autores = 'file:///'+os.getcwd()+'/' + 'index_autores.html'
-	webbrowser.open_new_tab(indice_autores)
+		newdic={}
+		atitle = i.title
+		aartist = i.artist
 
-	#for j in cd:
-		#cd_artista.append(j.title.text)
-		#print(cd_artista)
-
-
+		if atitle != None:
+			newdic['title']= i.title.text
+		if aartist != None:
+			newdic['artist']= i.artist.text
+		f_output = open('index_autores.html', 'w', encoding='utf-8')
+		print(a.render(newdic=newdic), file=f_output)
 
 def main():
 	get_codigo()
 	get_cd()
 	create_page(cd)
-	index(cd)
 	relatorio()
-	#search()
-	index_autores()
+	index(cd)
+	index_autores(cd)
 main()
