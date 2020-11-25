@@ -440,9 +440,9 @@ def index_autores(cd):
 		</div>
 		<div class="main_content">
 			<table>
-				{% for value in newdic %}
+				{% for value in newdic.values() %}
 				<tr>
-					<th><a href="{{ value["title"] }}.html"><div class="hiper">{{ value["artist"] }}</div></a></th>
+					<th><a href="{{ value.title }}.html"><div class="hiper">{{ value.artist }}</div></a></th>
 				</tr>
 				{% endfor %}
 			</table>
@@ -460,6 +460,7 @@ def index_autores(cd):
 			newdic['title']= i.title.text
 		if aartist != None:
 			newdic['artist']= i.artist.text
+		print(newdic.values())
 		f_output = open('index_autores.html', 'w', encoding='utf-8')
 		print(a.render(newdic=newdic), file=f_output)
 
