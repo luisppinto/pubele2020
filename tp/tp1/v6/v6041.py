@@ -48,7 +48,7 @@ def create_page(cd):
 
 			<h1>{{newdic.title}}</h1>
 			<h2>{{newdic.artist}}</h2>
-			<p><b>Ano: </b>{{newdic.year}} <b>País: </b>{{newdic.country}} <b>Produtora: </b>{{newdic.company}} </p>
+			<p><b>Ano: </b>{{newdic.year}} <b>País: </b>{{newdic.country}} <img src="https://flagcdn.com/w20/{{newdic.country}}.png"><b>Produtora: </b>{{newdic.company}} </p>
 			<h2> Descrição </h2>
 			<p>{{newdic.description}}</p>
 			<a href="index.html">Voltar ao índice</a>
