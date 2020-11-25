@@ -107,10 +107,10 @@ def index(cd):
 		<div class="header">
 				<h1>Catálogo de CDs</h1>
 		</div>
-		<form style="text-align:center" name="search" action="~/query_scorer.py" method="get">
+		<form style="text-align:center" name="search" action="search.py" method="get">
 				<input type="text" name="searchbox">
 				<input type="submit" value="Procurar">
-		</form>
+		</form><br>
 		<div class="nav">
 			<table class="nav-tab">
 				<tr>
@@ -199,7 +199,7 @@ def relatorio():
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltyear&gt1988&lt/year&gt &lt/CD&gt<br>
 				...
 			</p>
-			<h2> G8.py </h2>
+			<h2> g8.py </h2>
 			<p class="conteudo_relatorio">
 				O ficheiro que deu origem a todo o website começa pelo import das librarias necessárias na resolução de algoritmos.
 			</p>
@@ -299,7 +299,7 @@ def relatorio():
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	create_page(cd)<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	index(cd)<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  relatorio()<br>
-				<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  search()<br>
 				&nbsp&nbsp&nbsp main()
 			</p>
 			<p class="conteudo_relatorio">
@@ -408,14 +408,15 @@ def relatorio():
 
 def search():
 
-	form = cgi.FieldStorage()
-	searchterm = form.getvalue('searchbox')
-	if searchterm != None:
-		with open('catalogotp1.xml') as f:
-			d=f.read()
-			ad=bs(d,"xml")
-			results = ad.find_all(string=re.compile('.*{0}.*'.format(search)), recursive=True)
-			x=print('Foi encontrada a palavra "{0}" {1} vezes\n'.format(search), len(results))
+	with open('catalogotp1.xml') as f:
+		d = f.read()
+		ad = bs(d,"xml")
+		intent = input("Pretende procurar algum CD? s/n")
+		if intent == s:
+			qual = input("Que CD prentende procurar?")
+			results = ad.find_all(string=re.compile(qual))
+			open = 'file:///'+os.getcwd()+'/'+results+'.html'
+			webbrowser.open_new_tab(open)
 
 def main():
 	get_codigo()
