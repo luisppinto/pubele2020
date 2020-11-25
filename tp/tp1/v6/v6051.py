@@ -50,7 +50,6 @@ def create_page(cd):
 			<div class="art"><img src={{newdic.artwork}} alt="Album Artwork"></div>
 			<h2>{{newdic.artist}}</h2>
 			<p><b>Ano: </b>{{newdic.year}} <b>País: </b>{{newdic.country}} <img src="https://flagcdn.com/h20/{{newdic.country.lower()}}.png"> <b>Produtora: </b>{{newdic.company}} </p>
-			<h2> Descrição </h2>
 			<p>{{newdic.description}}</p>
 			<a href="index.html">Voltar ao índice</a>
 			</div>
