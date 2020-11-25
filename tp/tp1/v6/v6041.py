@@ -11,7 +11,7 @@ cd=[] # Lista vazia (a preencher por get_cd()) de todos os cds e respetivos cont
 title=[]
 
 def get_codigo():
-	with open('v604.py', encoding='utf-8') as original, open('codigo.txt', "w", encoding='utf-8') as target:
+	with open('v6041.py', encoding='utf-8') as original, open('codigo.txt', "w", encoding='utf-8') as target:
 		target.writelines(original.readlines())
 
 def get_cd():
@@ -39,9 +39,9 @@ def create_page(cd):
 				<tr>
 						<th><a href="index.html"><div class="hed">Lista de Titulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
-                        <th><a href="codigo.txt"><div class="hed">Código</a></div></th>
-                </tr>
-                        </table>
+						<th><a href="codigo.txt"><div class="hed">Código</a></div></th>
+				</tr>
+						</table>
 		</div>
 
 		<div class="main_content">
@@ -88,10 +88,10 @@ def index(cd):
 
 	a = j2.Template("""
 	<!DOCTYPE html>
-                <form name="search" action="~/query_scorer.py" method="get">
-                        <input type="text" name="searchbox">
-                        <input type="submit" value="Search">
-                </form>
+				<form name="search" action="~/query_scorer.py" method="get">
+						<input type="text" name="searchbox">
+						<input type="submit" value="Search">
+				</form>
 	<html>
 		<head>
 			<title>Catálogo de CDs</title>
@@ -107,16 +107,16 @@ def index(cd):
 				<tr>
 						<th><a href="index.html"><div class="hed">Lista de Titulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
-                        <th><a href="codigo.txt"><div class="hed">Código</a></div></th>
-                </tr>
-                        </table>
+						<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
+				</tr>
+						</table>
 		</div>
 
 		<div class="main_content">
 			<table>
-                                {% for el in title %}
+								{% for el in title %}
 				<tr>
-                                        <th><a href="{{el}}.html"><div class="hiper">{{el}}</div></a></th>
+										<th><a href="{{el}}.html"><div class="hiper">{{el}}</div></a></th>
 
 				</tr>
 				{% endfor %}
@@ -153,15 +153,15 @@ def relatorio():
 				<tr>
 					<th><a href="index.html"><div class="hed">Lista de Titulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
-                                        <th><a href="codigo.txt"><div class="hed">Código</a></div></th>
-                                </tr>
+										<th><a href="codigo.txt"><div class="hed">Código</a></div></th>
+								</tr>
 			</table>
 		</div>
 		<div class="main_content">
 			<h1>Relatório</h1>
 			<h2> Ficheiro Catálogotp1.xml </h2>
 			 <p class="conteudo_relatorio">
-			 	O ficheiro Catálogotp1.xml contém um conjunto de dados relativos a CDs de Música.<br>
+				O ficheiro Catálogotp1.xml contém um conjunto de dados relativos a CDs de Música.<br>
 				Estes CDs contém um titulo, de caracter obrigatório, contém ainda um artista, um país, uma produtora, uma descrição e um ano.<br>
 				Abaixo podemos ver um excerto de código em XML:
 			</p>
@@ -273,42 +273,42 @@ def relatorio():
 	print(k.render(), file=f_out)
 
 	st = j2.Template('''    body {
-                                        background-color:lightgrey;
-                                        width:100%;
-                                        max-width:1920px;}
+										background-color:lightgrey;
+										width:100%;
+										max-width:1920px;}
 
-                                div.nav {width:75%;
+								div.nav {width:75%;
 					max-width: 1920px;
 					align-self: center;
 					padding-left: 12.5%;}
 
 				table {width:100%}
 
-                                div.hiper {
-                                        border: 1px solid black;
-                                        background-color:grey;
-                                        padding-top: 15px;
-                                        padding-bottom: 15px;
-                                        text-align:center;
-                                        margin-top:5px;
-                                        font-size: 20px;
-                                        color: black;
-                                        border-radius: 15px;
-                                }
+								div.hiper {
+										border: 1px solid black;
+										background-color:grey;
+										padding-top: 15px;
+										padding-bottom: 15px;
+										text-align:center;
+										margin-top:5px;
+										font-size: 20px;
+										color: black;
+										border-radius: 15px;
+								}
 
-                                th {
-                                width:33%;
-                                }
-                                div.hed {border: 1px solid black;
-                                        background-color:grey;
-                                        padding-top: 15px;
-                                        padding-bottom: 15px;
-                                        text-align:center;
-                                        margin-top:5px;
-                                        font-size: 20px;
-                                        color: black;
-                                        border-radius: 15px;
-                                }
+								th {
+								width:33%;
+								}
+								div.hed {border: 1px solid black;
+										background-color:grey;
+										padding-top: 15px;
+										padding-bottom: 15px;
+										text-align:center;
+										margin-top:5px;
+										font-size: 20px;
+										color: black;
+										border-radius: 15px;
+								}
 
 
 				div.main_content {
@@ -359,18 +359,19 @@ def relatorio():
 
 def searchbar():
 
-        form = cgi.FieldStorage()
-        searchterm = form.getvalue('searchbox')
-        return searchterm
+	form = cgi.FieldStorage()
+	searchterm = form.getvalue('searchbox')
+	return searchterm
 
 def search(searchterm):
 
-        if searchterm != None:
-                with open('catalogotp1.xml') as f:
-                        d=f.read()
-                        ad=bs(d,"xml")
-                        results = ad.find_all(string=re.compile('.*{0}.*'.format(search)), recursive=True)
-                        print('Foi encontrada a palavra "{0}" {1} vezes\n'.format(search, len(results)))
+	matches=[]
+	if searchterm != None:
+		with open('catalogotp1.xml') as f:
+			d=f.read()
+			ad=bs(d,"xml")
+			results = ad.find_all(string=re.compile('.*{0}.*'.format(search)), recursive=True)
+			x=print('Foi encontrada a palavra "{0}" {1} vezes\n'.format(search, len(results)))
 
 def main():
 	get_codigo()
