@@ -357,6 +357,9 @@ def relatorio():
 					color:grey;
 					font-style: italic;}
 
+				img {
+					text-align:center;}
+
 			''')
 	f_out_stylesheet = open('stylesheet.css', 'w', encoding='utf-8')
 	print(st.render(), file=f_out_stylesheet)
