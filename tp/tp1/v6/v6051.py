@@ -224,68 +224,7 @@ def relatorio():
 			</p>
 			<h3>Função create_page(cd)</h3>
 			<p class="codigo">
-				&nbsp&nbsp&nbsp def create_page(cd):<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp page = j2.Template("""<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lthtml&gt<br>
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lthead&gt<br>
-							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lttitle&gt{{title}}&lt/title<br>
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltmeta charset="UTF-8"/&gt<br>
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltlink rel="stylesheet" href="stylesheet.css"&gt<br>
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/head&gt<br>
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltbody&gt<br>
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdiv class="header"&gt<br>
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lth1&gtCatálogo de CDs&lt/h1&gt<br>
-						 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsps &lt/div&gt<br>
-						 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdiv class="nav"&gt<br>
-							 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lttable class="nav-tab"&gt<br>
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lttr&gt<br>
-										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltth&gt&lta href="index.html"&gt&ltdiv class="hed"&gtLista de Títulos&lt/div&gt&lt/a&gt&lt/th&gt<br>
-										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltth&gt&lta href="relatorio.html"&gt&ltdiv class="hed"&gtRelatório&lt/div&gt&lt/a&gt&lt/th&gt<br>
-										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltth&gt&lta href="codigo.txt" target="_blank"&gt&ltdiv class="hed"&gtCódigo&lt/a&gt&lt/div&gt&lt/th&gt<br>
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/tr&gt<br>
-										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/table&gt<br>
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/div&gt<br>
-
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdiv class="main_content"&gt<br>
-
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&lth1&gt{{newdic.title}}&lt/h1&gt<br>
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&ltdiv class="art"&gt&ltimg src={{newdic.artwork}} alt="Album Artwork"&gt&lt/div&gt<br>
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&lth2&gt{{newdic.artist}}&lt/h2&gt<br>
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&ltp&gt&ltb&gtAno: &lt/b&gt{{newdic.year}} &ltb&gtPaís: &lt/b&gt{{newdic.country}} &ltimg src="https://flagcdn.com/h20/{{newdic.country.lower()}}.png"&gt &ltb&gtProdutora: &lt/b&gt{{newdic.company}} &lt/p&gt<br>
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&ltp&gt{{newdic.description}}&lt/p&gt<br>
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&lta href="index.html"&gtVoltar ao índice&lt/a&gt<br>
-						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&lt/div&gt<br>
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/body&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/html&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp """)<br>
-
-					&nbsp&nbsp&nbsp for i in cd:<br>
-						&nbsp&nbsp&nbsp nomes=i.title.text<br>
-						&nbsp&nbsp&nbsp newdic={}<br>
-						&nbsp&nbsp&nbsp atitle = i.title<br>
-						&nbsp&nbsp&nbsp aartist = i.artist<br>
-						&nbsp&nbsp&nbsp aartwork = i.artwork<br>
-						&nbsp&nbsp&nbsp ayear = i.year<br>
-						&nbsp&nbsp&nbsp acountry = i.country<br>
-						&nbsp&nbsp&nbsp acompany = i.company<br>
-						&nbsp&nbsp&nbsp adescription = i.description<br>
-
-						&nbsp&nbsp&nbsp if atitle != None:<br>
-							&nbsp&nbsp&nbsp newdic['title']= i.title.text<br>
-						&nbsp&nbsp&nbsp if aartist != None:<br>
-							&nbsp&nbsp&nbsp newdic['artist']= i.artist.text<br>
-						&nbsp&nbsp&nbsp if aartwork != None:<br>
-							&nbsp&nbsp&nbsp newdic['artwork']= i.artwork.text<br>
-						&nbsp&nbsp&nbsp if ayear != None:<br>
-							&nbsp&nbsp&nbsp newdic['year']= i.year.text<br>
-						&nbsp&nbsp&nbsp if acountry != None:<br>
-							&nbsp&nbsp&nbsp newdic['country']= i.country.text<br>
-						&nbsp&nbsp&nbsp if acompany != None:<br>
-							&nbsp&nbsp&nbsp newdic['company']= i.company.text<br>
-						&nbsp&nbsp&nbsp if adescription != None:<br>
-							&nbsp&nbsp&nbsp newdic['description']= i.description.text<br>
-						&nbsp&nbsp&nbsp f_output = open('{}.html'.format(nomes),'w', encoding='utf-8')<br>
-						&nbsp&nbsp&nbsp print(page.render(newdic=newdic), file=f_output)<br>
+				
 			</p>
 			<p class="conteudo_relatorio">
 				Esta função consiste em criar um índice de CDs. Recebe como argumento o conteúdo dos CDs obtidos em get_cd().<br>
