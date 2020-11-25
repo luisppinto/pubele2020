@@ -1,3 +1,9 @@
+'''GRUPO 8 - TRABALHO PRÁTICO 1 - PUBLICAÇÃO ELETRÓNICA
+AUTORES:
+BRUNO REBELO LOPES A57768
+MORGANA SACRAMENTO FERREIRA A93779
+LUÍS PEDRO DA SILVA PINTO A83016'''
+
 import re #Usado para o search
 from re import *
 import jinja2 as j2 # Usado em create_page() e index()
@@ -91,10 +97,6 @@ def index(cd):
 
 	a = j2.Template("""
 	<!DOCTYPE html>
-				<form name="search" action="~/query_scorer.py" method="get">
-						<input type="text" name="searchbox">
-						<input type="submit" value="Search">
-				</form>
 	<html>
 		<head>
 			<title>Catálogo de CDs</title>
@@ -105,6 +107,10 @@ def index(cd):
 		<div class="header">
 				<h1>Catálogo de CDs</h1>
 		</div>
+		<form style="text-align:center" name="search" action="~/query_scorer.py" method="get">
+				<input type="text" name="searchbox">
+				<input type="submit" value="Procurar">
+		</form>
 		<div class="nav">
 			<table class="nav-tab">
 				<tr>
@@ -161,6 +167,12 @@ def relatorio():
 		</div>
 		<div class="main_content">
 			<h1>Relatório</h1>
+			<p>Autores:</p>
+			<ul>
+				<li>Bruno Rebelo Lopes a57768</li>
+				<li>Morgana Sacramento Ferreira a93779</li>
+				<li>Luís Pedro da Silva Pinto a83016</li>
+			</ul>
 			<h2> Ficheiro catalogotp1.xml </h2>
 			 <p class="conteudo_relatorio">
 				O ficheiro catalogotp1.xml contém um conjunto de dados relativos a CDs de Música.<br>
@@ -225,6 +237,8 @@ def relatorio():
 			<h3>Função create_page(cd)</h3>
 			<p class="codigo">
 
+
+
 			</p>
 			<p class="conteudo_relatorio">
 				Esta função consiste na criação individual de cada página de cd. Recebe como argumento o conteúdo dos CDs obtidos em get_cd().<br>
@@ -268,6 +282,8 @@ def relatorio():
 			</p>
 			<h3>Função relatorio()</h3>
 			<p class="codigo">
+
+
 
 			</p>
 			<p class="conteudo_relatorio">
@@ -390,27 +406,22 @@ def relatorio():
 	f_out_stylesheet = open('stylesheet.css', 'w', encoding='utf-8')
 	print(st.render(), file=f_out_stylesheet)
 
-'''def searchbar():
+def search():
 
 	form = cgi.FieldStorage()
 	searchterm = form.getvalue('searchbox')
-	return searchterm
-
-def search(searchterm):
-
 	if searchterm != None:
 		with open('catalogotp1.xml') as f:
 			d=f.read()
 			ad=bs(d,"xml")
 			results = ad.find_all(string=re.compile('.*{0}.*'.format(search)), recursive=True)
-			x=print('Foi encontrada a palavra "{0}" {1} vezes\n'.format(search, len(results)))
-'''
+			x=print('Foi encontrada a palavra "{0}" {1} vezes\n'.format(search), len(results))
+
 def main():
 	get_codigo()
 	get_cd()
 	create_page(cd)
 	index(cd)
 	relatorio()
-	#searchbar()
-	#search(searchterm)
+	search()
 main()
