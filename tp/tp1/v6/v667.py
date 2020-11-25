@@ -19,7 +19,7 @@ artist=[]
 cd_artista=[]
 
 def get_codigo():
-	with open('v666.py', encoding='utf-8') as original, open('codigo.txt', "w", encoding='utf-8') as target:
+	with open('v667.py', encoding='utf-8') as original, open('codigo.txt', "w", encoding='utf-8') as target:
 		target.writelines(original.readlines())
 
 def get_cd():
