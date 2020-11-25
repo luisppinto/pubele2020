@@ -4,14 +4,14 @@ BRUNO REBELO LOPES A57768
 MORGANA SACRAMENTO FERREIRA A93779
 LUÍS PEDRO DA SILVA PINTO A83016'''
 
-import re #Usado para o search
+import re
 from re import *
-import jinja2 as j2 # Usado em create_page() e index()
+import jinja2 as j2
 import lxml
-from bs4 import BeautifulSoup as bs # Usado em get_cd()
+from bs4 import BeautifulSoup as bs
 import os # Usado em create_page() e index()
-import webbrowser #Abrir diretamente index
-import cgi #Usado em search()
+import webbrowser # Abrir diretamente index.html
+import cgi 
 
 cd=[] # Lista vazia (a preencher por get_cd()) de todos os cds e respetivos conteúdos
 title=[]
