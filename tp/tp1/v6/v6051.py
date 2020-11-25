@@ -224,12 +224,15 @@ def relatorio():
 			</p>
 			<h3>Função create_page(cd)</h3>
 			<p class="codigo">
-				
+
 			</p>
 			<p class="conteudo_relatorio">
-				Esta função consiste em criar um índice de CDs. Recebe como argumento o conteúdo dos CDs obtidos em get_cd().<br>
-				Cria um template que vai dar origem ao ficheiro index.html, em que para cada CD usamos o título do mesmo para criar as hiperligações necessárias.<br>
-				Por fim implementámos uma função de abertura do index.html automática após correr o programa.
+				Esta função consiste na criação individual de cada página de cd. Recebe como argumento o conteúdo dos CDs obtidos em get_cd().<br>
+				Cria um template que vai dar origem ao ficheiro com o nome do título do cd + ".html".<br>
+				De seguida, iniciou-se um loop que irá preencher o template com o conteúdo do cd.<br>
+				Para isso, fomos buscar o conteúdo de cada cd como o artwork através do i.artwork.<br>
+				Ainda se implementou um if para cada variável, pois pode haver casos onde não existe artwork ou year, que adiciona os valores num dicionário.</br>
+				Por fim, foi feito o .render com o dicionário, obtendo-se o resultado pretendido.
 			</p>
 			<h3>Função index(cd)</h3>
 			<p class="codigo">
@@ -263,17 +266,28 @@ def relatorio():
 				Cria um template que vai dar origem ao ficheiro index.html, em que para cada CD usamos o título do mesmo para criar as hiperligações necessárias.<br>
 				Por fim implementámos uma função de abertura do index.html automática após correr o programa.
 			</p>
+			<h3>Função relatorio()</h3>
+			<p class="codigo">
+
+			</p>
+			<p class="conteudo_relatorio">
+				A função relatorio() foi usada para gerar o ficheiro onde nos encontramos agora.<br>
+				Foi aplicado um template que só dá origem a um relatorio.html quando o ficheiro g8.py corre, diminuindo a quantidade de ficheiros iniciais.<br>
+				Aproveitou-se esta função para se gerar um ficheiro css com o nome standart stylesheet.css, que irá ser utilizado para alegrar as páginas html deste trabalho.
+			</p>
 			<h3>Função main()</h3>
 			<p class="codigo">
 				&nbsp&nbsp&nbsp def main():<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  get_codigo()<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	get_cd()<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	create_page(cd)<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	index(cd)<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  relatorio()<br>
 				<br>
 				&nbsp&nbsp&nbsp main()
 			</p>
 			<p class="conteudo_relatorio">
-				Esta função basicamente corre todos as funções nele contidas.
+				Esta função basicamente corre todas as funções nele contidas.
 			</p>
 			<br>
 			<a class="index" href="index.html">Voltar ao índice</a>
