@@ -48,7 +48,7 @@ def create_page(cd):
 
 			<h1>{{newdic.title}}</h1>
 			<h2>{{newdic.artist}}</h2>
-			<p><b>Ano: </b>{{newdic.year}} <b>País: </b>{{newdic.country}} <img src="https://flagcdn.com/w20/{{newdic.country}}.png"><b>Produtora: </b>{{newdic.company}} </p>
+			<p><b>Ano: </b>{{newdic.year}} <b>País: </b>{{newdic.country}} <img src="https://flagcdn.com/h20/{{newdic.country.lower()}}.png"> <b>Produtora: </b>{{newdic.company}} </p>
 			<h2> Descrição </h2>
 			<p>{{newdic.description}}</p>
 			<a href="index.html">Voltar ao índice</a>
@@ -357,7 +357,7 @@ def relatorio():
 	f_out_stylesheet = open('stylesheet.css', 'w', encoding='utf-8')
 	print(st.render(), file=f_out_stylesheet)
 
-def searchbar():
+'''def searchbar():
 
 	form = cgi.FieldStorage()
 	searchterm = form.getvalue('searchbox')
@@ -371,15 +371,15 @@ def search(searchterm):
 			ad=bs(d,"xml")
 			results = ad.find_all(string=re.compile('.*{0}.*'.format(search)), recursive=True)
 			x=print('Foi encontrada a palavra "{0}" {1} vezes\n'.format(search, len(results)))
-
+'''
 def main():
 	get_codigo()
 	get_cd()
 	create_page(cd)
 	index(cd)
 	relatorio()
-	searchbar()
-	search(searchterm)
+	#searchbar()
+	#search(searchterm)
 
 	#print(cd) # Ver lista com cds e respetivos conteúdos
 main()
