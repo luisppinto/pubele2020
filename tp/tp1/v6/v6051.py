@@ -224,93 +224,68 @@ def relatorio():
 			</p>
 			<h3>Função create_page(cd)</h3>
 			<p class="codigo">
-				def create_page(cd):
+				&nbsp&nbsp&nbsp def create_page(cd):<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp page = j2.Template("""<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lthtml&gt<br>
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lthead&gt<br>
+							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lttitle&gt{{title}}&lt/title<br>
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltmeta charset="UTF-8"/&gt<br>
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltlink rel="stylesheet" href="stylesheet.css"&gt<br>
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/head&gt<br>
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltbody&gt<br>
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdiv class="header"&gt<br>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lth1&gtCatálogo de CDs&lt/h1&gt<br>
+						 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsps &lt/div&gt<br>
+						 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdiv class="nav"&gt<br>
+							 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lttable class="nav-tab"&gt<br>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lttr&gt<br>
+										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltth&gt&lta href="index.html"&gt&ltdiv class="hed"&gtLista de Títulos&lt/div&gt&lt/a&gt&lt/th&gt<br>
+										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltth&gt&lta href="relatorio.html"&gt&ltdiv class="hed"&gtRelatório&lt/div&gt&lt/a&gt&lt/th&gt<br>
+										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltth&gt&lta href="codigo.txt" target="_blank"&gt&ltdiv class="hed"&gtCódigo&lt/a&gt&lt/div&gt&lt/th&gt<br>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/tr&gt<br>
+										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/table&gt<br>
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/div&gt<br>
 
-					page = j2.Template("""
-				<html>
-					<head>
-							<title>{{title}}</title
-						<meta charset="UTF-8"/>
-						<link rel="stylesheet" href="stylesheet.css">
-					</head>
-					<body>
-					<div class="header">
-								<h1>Catálogo de CDs</h1>
-						</div>
-						<div class="nav">
-							<table class="nav-tab">
-								<tr>
-										<th><a href="index.html"><div class="hed">Lista de Títulos</div></a></th>
-										<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
-										<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
-								</tr>
-										</table>
-						</div>
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdiv class="main_content"&gt<br>
 
-						<div class="main_content">
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&lth1&gt{{newdic.title}}&lt/h1&gt<br>
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&ltdiv class="art"&gt&ltimg src={{newdic.artwork}} alt="Album Artwork"&gt&lt/div&gt<br>
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&lth2&gt{{newdic.artist}}&lt/h2&gt<br>
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&ltp&gt&ltb&gtAno: &lt/b&gt{{newdic.year}} &ltb&gtPaís: &lt/b&gt{{newdic.country}} &ltimg src="https://flagcdn.com/h20/{{newdic.country.lower()}}.png"&gt &ltb&gtProdutora: &lt/b&gt{{newdic.company}} &lt/p&gt<br>
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&ltp&gt{{newdic.description}}&lt/p&gt<br>
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&lta href="index.html"&gtVoltar ao índice&lt/a&gt<br>
+						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&lt/div&gt<br>
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/body&gt<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/html&gt<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp """)<br>
 
-							<h1>{{newdic.title}}</h1>
-							<div class="art"><img src={{newdic.artwork}} alt="Album Artwork"></div>
-							<h2>{{newdic.artist}}</h2>
-							<p><b>Ano: </b>{{newdic.year}} <b>País: </b>{{newdic.country}} <img src="https://flagcdn.com/h20/{{newdic.country.lower()}}.png"> <b>Produtora: </b>{{newdic.company}} </p>
-							<p>{{newdic.description}}</p>
-							<a href="index.html">Voltar ao índice</a>
-							</div>
-					</body>
-				</html>
-				""")
+					&nbsp&nbsp&nbsp for i in cd:<br>
+						&nbsp&nbsp&nbsp nomes=i.title.text<br>
+						&nbsp&nbsp&nbsp newdic={}<br>
+						&nbsp&nbsp&nbsp atitle = i.title<br>
+						&nbsp&nbsp&nbsp aartist = i.artist<br>
+						&nbsp&nbsp&nbsp aartwork = i.artwork<br>
+						&nbsp&nbsp&nbsp ayear = i.year<br>
+						&nbsp&nbsp&nbsp acountry = i.country<br>
+						&nbsp&nbsp&nbsp acompany = i.company<br>
+						&nbsp&nbsp&nbsp adescription = i.description<br>
 
-					for i in cd:
-						nomes=i.title.text
-						newdic={}
-						atitle = i.title
-						aartist = i.artist
-						aartwork = i.artwork
-						ayear = i.year
-						acountry = i.country
-						acompany = i.company
-						adescription = i.description
-
-						if atitle != None:
-							newdic['title']= i.title.text
-						if aartist != None:
-							newdic['artist']= i.artist.text
-						if aartwork != None:
-							newdic['artwork']= i.artwork.text
-						if ayear != None:
-							newdic['year']= i.year.text
-						if acountry != None:
-							newdic['country']= i.country.text
-						if acompany != None:
-							newdic['company']= i.company.text
-						if adescription != None:
-							newdic['description']= i.description.text
-						f_output = open('{}.html'.format(nomes),'w', encoding='utf-8')
-						print(page.render(newdic=newdic), file=f_output)
-				&nbsp&nbsp&nbsp def index(cd):<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp a = j2.Template("""<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt!DOCTYPE html&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lthtml&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lthead&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltmeta charset="UTF-8"&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lttitle&gtCatálogo de CDs&lt/title&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/head&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltbody&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&lth1&gtÍndice&lt/h1&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp		&ltul&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp			{% for el in title %}<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp		&ltli&gt&lta href="{{el}}.html"&gt{{el}}&lt/a&gt&lt/li&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp			{% endfor %}<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	&lt/ul&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/body&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt/html&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp """)<br>
-				&nbsp&nbsp&nbsp for i in cd:<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp title.append(i.title.text)<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp f_output = open('index.html', 'w') <br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp print(a.render({'title':title}), file=f_output)<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp indice = 'file:///'+os.getcwd()+'/' + 'index.html'<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp webbrowser.open_new_tab(indice)
+						&nbsp&nbsp&nbsp if atitle != None:<br>
+							&nbsp&nbsp&nbsp newdic['title']= i.title.text<br>
+						&nbsp&nbsp&nbsp if aartist != None:<br>
+							&nbsp&nbsp&nbsp newdic['artist']= i.artist.text<br>
+						&nbsp&nbsp&nbsp if aartwork != None:<br>
+							&nbsp&nbsp&nbsp newdic['artwork']= i.artwork.text<br>
+						&nbsp&nbsp&nbsp if ayear != None:<br>
+							&nbsp&nbsp&nbsp newdic['year']= i.year.text<br>
+						&nbsp&nbsp&nbsp if acountry != None:<br>
+							&nbsp&nbsp&nbsp newdic['country']= i.country.text<br>
+						&nbsp&nbsp&nbsp if acompany != None:<br>
+							&nbsp&nbsp&nbsp newdic['company']= i.company.text<br>
+						&nbsp&nbsp&nbsp if adescription != None:<br>
+							&nbsp&nbsp&nbsp newdic['description']= i.description.text<br>
+						&nbsp&nbsp&nbsp f_output = open('{}.html'.format(nomes),'w', encoding='utf-8')<br>
+						&nbsp&nbsp&nbsp print(page.render(newdic=newdic), file=f_output)<br>
 			</p>
 			<p class="conteudo_relatorio">
 				Esta função consiste em criar um índice de CDs. Recebe como argumento o conteúdo dos CDs obtidos em get_cd().<br>
