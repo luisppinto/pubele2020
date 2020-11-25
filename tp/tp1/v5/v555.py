@@ -8,6 +8,10 @@ import webbrowser #Abrir diretamente index
 cd=[] # Lista vazia (a preencher por get_cd()) de todos os cds e respetivos conteúdos
 title=[]
 
+def get_codigo():
+	with open('v555.py') as original, open('codigo.txt', "w") as target:
+		target.writelines(original.readlines())
+
 def get_cd():
 	with open('catalogotp1.xml') as f:
 		d=f.read()
@@ -36,14 +40,14 @@ def create_page(cd):
 
 	for i in cd:
 		nomes=i.title.text
-		newdic={}		
+		newdic={}
 		atitle = i.title
 		aartist = i.artist
 		ayear = i.year
 		acountry = i.country
 		acompany = i.company
 		adescription = i.description
-		
+
 		if atitle != None:
 			newdic['title']= i.title.text
 		if aartist != None:
@@ -56,7 +60,6 @@ def create_page(cd):
 			newdic['company']= i.company.text
 		if adescription != None:
 			newdic['description']= i.description.text
-		print(newdic)
 		f_output = open('{}.html'.format(nomes),'w')
 		print(page.render(newdic=newdic), file=f_output)
 
@@ -78,6 +81,7 @@ def index(cd):
 				<li><a href="{{el}}.html">{{el}}</a></li>
 					{% endfor %}
 				</ul>
+				<li><a href="codigo.txt">Aceder ao código-fonte<a></li>
 		</body>
 	</html>
 	""")
@@ -90,6 +94,7 @@ def index(cd):
 	webbrowser.open_new_tab(indice)
 
 def main():
+	get_codigo()
 	get_cd()
 	create_page(cd)
 	index(cd)
