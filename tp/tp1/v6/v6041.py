@@ -23,6 +23,7 @@ def get_cd():
 
 def create_page(cd):
 
+
 	page = j2.Template("""
 <html>
 	<head>
