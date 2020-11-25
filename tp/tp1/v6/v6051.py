@@ -11,7 +11,7 @@ cd=[] # Lista vazia (a preencher por get_cd()) de todos os cds e respetivos cont
 title=[]
 
 def get_codigo():
-	with open('v605.py', encoding='utf-8') as original, open('codigo.txt', "w", encoding='utf-8') as target:
+	with open('v6051.py', encoding='utf-8') as original, open('codigo.txt', "w", encoding='utf-8') as target:
 		target.writelines(original.readlines())
 
 def get_cd():
@@ -32,12 +32,12 @@ def create_page(cd):
 	</head>
 	<body>
 	<div class="header">
-				<h1>Cátalogo de CDs</h1>
+				<h1>Catálogo de CDs</h1>
 		</div>
 		<div class="nav">
 			<table class="nav-tab">
 				<tr>
-						<th><a href="index.html"><div class="hed">Lista de Titulos</div></a></th>
+						<th><a href="index.html"><div class="hed">Lista de Títulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
 						<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
 				</tr>
@@ -104,12 +104,12 @@ def index(cd):
 		</head>
 		<body>
 		<div class="header">
-				<h1>Cátalogo de CDs</h1>
+				<h1>Catálogo de CDs</h1>
 		</div>
 		<div class="nav">
 			<table class="nav-tab">
 				<tr>
-						<th><a href="index.html"><div class="hed">Lista de Titulos</div></a></th>
+						<th><a href="index.html"><div class="hed">Lista de Títulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
 						<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
 				</tr>
@@ -148,13 +148,13 @@ def relatorio():
 		</head>
 		<body>
 		<div class="header">
-				<h1>Cátalogo de CDs</h1>
+				<h1>Catálogo de CDs</h1>
 		</div>
 
 		<div class="nav">
 			<table>
 				<tr>
-					<th><a href="index.html"><div class="hed">Lista de Titulos</div></a></th>
+					<th><a href="index.html"><div class="hed">Lista de Títulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
 										<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
 								</tr>
@@ -162,10 +162,10 @@ def relatorio():
 		</div>
 		<div class="main_content">
 			<h1>Relatório</h1>
-			<h2> Ficheiro Catálogotp1.xml </h2>
+			<h2> Ficheiro catalogotp1.xml </h2>
 			 <p class="conteudo_relatorio">
-				O ficheiro Catálogotp1.xml contém um conjunto de dados relativos a CDs de Música.<br>
-				Estes CDs contém um titulo, de caracter obrigatório, contém ainda um artista, um país, uma produtora, uma descrição e um ano.<br>
+				O ficheiro catalogotp1.xml contém um conjunto de dados relativos a CDs de Música.<br>
+				Estes CDs contêm um título, de carácter obrigatório, contém ainda um artista, uma capa de album, um país, uma produtora, uma descrição e um ano.<br>
 				Abaixo podemos ver um excerto de código em XML:
 			</p>
 			<p class="codigo">
@@ -173,16 +173,18 @@ def relatorio():
 				&nbsp&nbsp&nbsp  &ltCD&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lttitle&gtA Vida Que Eu Escolhi&lt/title&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltartist&gtTony Carreira&lt/artist&gt<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltartwork&lthttps://img.discogs.com/ZrC2cjDjuh_mremQ6o5kXKlTFAQ=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-5263584-1389034439-9728.jpeg.jpg&lt/artwork&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltcountry&gtPortugal&lt/country&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltcompany&gtEspacial&lt/company&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdescription&gtA Vida Que Eu Escolhi é o décimo segundo álbum de estúdio a solo do cantor português Tony Carreira. Foi lançado em 2006 pela editora Espacial. &lt/description&gt<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdescription&gtA Vida Que Eu Escolhi é o décimo segundo álbum de estúdio a solo do cantor português Tony Carreira. Foi lançado em 2006 pela editora Espacial. Contém 15 faixas, das quais se destacam "Mesmo Que Seja Mentira" e "É Melhor (Dizer Adeus)" (anteriormente editadas como extras no álbum Ao Vivo no Coliseu, também de 2006), bem como "O Que Vai Ser De Mim (Quando Fores Embora)" e "A Vida Que Eu Escolhi", 4 temas que fazem parte da compilação "20 Anos de Canções", lançada em 2008. Este trabalho esteve, ao todo, 64 semanas, no Top Oficial da AFP, a tabela semanal dos 30 álbuns mais vendidos em Portugal. Entrou na época de Natal de 2006 directamente para a 4ª posição, atingindo o 1º lugar à quarta semana, lugar que disputaria com André Sardet e Madonna e que ocuparia por mais 3 ocasiões mas que perderia definitivamente para José Afonso. &lt/description&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltyear&gt2006&lt/year&gt &lt/CD&gt<br>
 				&nbsp&nbsp&nbsp  &ltCD&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lttitle&gtHide your heart&lt/title&gt<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lttitle&gtHide Your Heart&lt/title&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltartist&gtBonnie Tyler&lt/artist&gt<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltartwork&lthttps://upload.wikimedia.org/wikipedia/en/2/23/Hide_Your_Heart_Front_Cover.jpg&lt/artwork&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltcountry&gtReino Unido&lt/country&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltcompany&gtCBS Records&lt/company&gt<br>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdescription&gtHide Your Heart (released under the title Notes from America in the United States, Canada and Brazil), is the seventh studio album by Welsh singer Bonnie Tyler.&lt/description&gt<br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltdescription&gtHide Your Heart (released under the title Notes from America in the United States, Canada and Brazil), is the seventh studio album by Welsh singer Bonnie Tyler. The album features the song "Hide Your Heart" written by Paul Stanley, Desmond Child and Holly Knight. This song was later covered three times in 1989 Ace Frehley's Trouble Walkin', Robin Beck's Trouble Or Nothin', and Molly Hatchet's Lightning Strikes Twice. And performed in 1989 by Paul Stanley with Kiss on their Hot in the Shade album.&lt/description&gt<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltyear&gt1988&lt/year&gt &lt/CD&gt<br>
 				...
 			</p>
