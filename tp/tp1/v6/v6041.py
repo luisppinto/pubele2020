@@ -47,6 +47,7 @@ def create_page(cd):
 		<div class="main_content">
 
 			<h1>{{newdic.title}}</h1>
+			<img src={{newdic.artwork}} alt="Album Artwork">
 			<h2>{{newdic.artist}}</h2>
 			<p><b>Ano: </b>{{newdic.year}} <b>País: </b>{{newdic.country}} <img src="https://flagcdn.com/h20/{{newdic.country.lower()}}.png"> <b>Produtora: </b>{{newdic.company}} </p>
 			<h2> Descrição </h2>
@@ -62,6 +63,7 @@ def create_page(cd):
 		newdic={}
 		atitle = i.title
 		aartist = i.artist
+		aartwork = i.artwork
 		ayear = i.year
 		acountry = i.country
 		acompany = i.company
@@ -71,6 +73,8 @@ def create_page(cd):
 			newdic['title']= i.title.text
 		if aartist != None:
 			newdic['artist']= i.artist.text
+		if aartwork != None:
+			newdic['artwork']= i.artwork.text
 		if ayear != None:
 			newdic['year']= i.year.text
 		if acountry != None:
