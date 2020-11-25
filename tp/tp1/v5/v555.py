@@ -24,47 +24,41 @@ def create_page(cd):
 		<meta charset="UTF-8"/>
 	</head>
 	<body>
-			<h1>{{title}}</h1>
-			<h2>{{artist}}</h2>
-			<p><b>Ano: </b>{{year}} <b>País: </b>{{country}} <b>Produtora: </b>{{company}} </p>
+			<h1>{{newdic.title}}</h1>
+			<h2>{{newdic.artist}}</h2>
+			<p><b>Ano: </b>{{newdic.year}} <b>País: </b>{{newdic.country}} <b>Produtora: </b>{{newdic.company}} </p>
 			<h2> Descrição </h2>
-			<p>{{description}}</p>
+			<p>{{newdic.description}}</p>
 			<a href="index.html">Voltar ao índice</a>
 	</body>
 </html>
 """)
 
 	for i in cd:
-		context=[]
-		title = i.title
-		artist = i.artist
-		year = i.year
-		country = i.country
-		company = i.company
-		description = i.description
-
-		if title != None:
-			title =i.title.text
-			context.append(title)
-		if artist != None:
-			artist = i.artist.text
-			context.append(artist)
-		if year != None:
-			year = i.year.text
-			context.append(year)
-		if country != None:
-			country = i.country.text
-			context.append(country)
-		if company != None:
-			company = i.company.text
-			context.append(company)
-		if description != None:
-			description = i.description.text
-			context.append(description)
-
-		print(context)
-		f_output = open('{}.html'.format(title),'w')
-		print(page.render(context=context), file=f_output)
+		nomes=i.title.text
+		newdic={}		
+		atitle = i.title
+		aartist = i.artist
+		ayear = i.year
+		acountry = i.country
+		acompany = i.company
+		adescription = i.description
+		
+		if atitle != None:
+			newdic['title']= i.title.text
+		if aartist != None:
+			newdic['artist']= i.artist.text
+		if ayear != None:
+			newdic['year']= i.year.text
+		if acountry != None:
+			newdic['country']= i.country.text
+		if acompany != None:
+			newdic['company']= i.company.text
+		if adescription != None:
+			newdic['description']= i.description.text
+		print(newdic)
+		f_output = open('{}.html'.format(nomes),'w')
+		print(page.render(newdic=newdic), file=f_output)
 
 def index(cd):
 
