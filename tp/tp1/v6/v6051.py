@@ -485,6 +485,4 @@ def main():
 	relatorio()
 	#searchbar()
 	#search(searchterm)
-
-	#print(cd) # Ver lista com cds e respetivos conteúdos
 main()
