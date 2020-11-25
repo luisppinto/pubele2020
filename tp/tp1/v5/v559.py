@@ -60,7 +60,7 @@ def create_page(cd):
 			newdic['company']= i.company.text
 		if adescription != None:
 			newdic['description']= i.description.text
-		f_output = open('{}.html'.format(nomes),'w')
+		f_output = open('{}.html'.format(nomes),'w', encoding='utf-8')
 		print(page.render(newdic=newdic), file=f_output)
 
 def index(cd):
