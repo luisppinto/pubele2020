@@ -15,6 +15,8 @@ import cgi #Usado em search()
 
 cd=[] # Lista vazia (a preencher por get_cd()) de todos os cds e respetivos conteúdos
 title=[]
+artist=[]
+cd_artista=[]
 
 def get_codigo():
 	with open('v6051.py', encoding='utf-8') as original, open('codigo.txt', "w", encoding='utf-8') as target:
@@ -418,6 +420,64 @@ def search():
 			open = 'file:///'+os.getcwd()+'/'+results+'.html'
 			webbrowser.open_new_tab(open)
 
+def index_autores(cd):
+
+	# Cria índice (com hiperligação) de todos os autores presentes no catalogotp1.xml
+
+	a = j2.Template("""
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Índice de Autores</title>
+			<meta charset="utf-8"/>
+			<link rel="stylesheet" href="stylesheet.css">
+		</head>
+		<body>
+		<div class="header">
+				<h1>Índice de Autores</h1>	
+		</div>	
+		<div class="nav">
+			<table class="nav-tab">
+				<tr>
+					<th><a href="index_autores.html">Lista de Artistas</a></th>
+					<th><a href="relatorio.html">Relatório</a></th>
+					<th><a href="codigo.txt">Código</a></th>
+								</tr>
+							</table>
+		</div>
+		
+		<div class="main_content">
+			<table>
+
+						{% for el in artist %}
+				<tr>
+								<th><a href="{{el}}.html"><div class="hiper">{{el}}</div></a></th>
+				
+				</tr>
+				
+				{% endfor %}
+
+			</table>
+		</div>
+		</body>
+	</html>
+	""")
+
+	for i in cd:
+		artist.append(i.artist.text)
+		cd_artista.append(i.parent.title.text)
+		#print(cd_artista)
+		f_output = open('index_autores.html', 'w', encoding='utf-8') #Cria ficheiro index_autores.html automaticamente
+		print(a.render({'artist':artist}), file=f_output)
+	indice_autores = 'file:///'+os.getcwd()+'/' + 'index_autores.html'
+	webbrowser.open_new_tab(indice_autores)
+
+	#for j in cd:
+		#cd_artista.append(j.title.text)
+		#print(cd_artista)
+		
+
+
 def main():
 	get_codigo()
 	get_cd()
@@ -425,4 +485,5 @@ def main():
 	index(cd)
 	relatorio()
 	search()
+	index_autores()
 main()
