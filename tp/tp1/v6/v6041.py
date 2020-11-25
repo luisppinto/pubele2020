@@ -345,7 +345,8 @@ def relatorio():
 
 				p.conteudo_relatorio {
 					font-size: 18px;
-					color:black;}
+					color:black;
+					text-align:center;}
 
 				p.codigo {
 					font-size: 18px;
