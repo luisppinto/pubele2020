@@ -365,7 +365,7 @@ def searchbar():
 
 def search(searchterm):
 
-        if searchterm != 0:
+        if searchterm != None:
                 with open('catalogotp1.xml') as f:
                         d=f.read()
                         ad=bs(d,"xml")
