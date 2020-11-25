@@ -9,7 +9,7 @@ cd=[] # Lista vazia (a preencher por get_cd()) de todos os cds e respetivos cont
 title=[]
 
 def get_codigo():
-	with open('v556.py', encoding='utf-8') as original, open('codigo.txt', "w") as target:
+	with open('v557.py', encoding='utf-8') as original, open('codigo.txt', "w") as target:
 		target.writelines(original.readlines())
 
 def get_cd():
