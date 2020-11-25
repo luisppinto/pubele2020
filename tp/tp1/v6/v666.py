@@ -11,7 +11,7 @@ import lxml
 from bs4 import BeautifulSoup as bs
 import os # Usado em create_page() e index()
 import webbrowser # Abrir diretamente index.html
-import cgi 
+import cgi
 
 cd=[] # Lista vazia (a preencher por get_cd()) de todos os cds e respetivos conteúdos
 title=[]
@@ -434,8 +434,8 @@ def index_autores(cd):
 		</head>
 		<body>
 		<div class="header">
-				<h1>Índice de Autores</h1>	
-		</div>	
+				<h1>Índice de Autores</h1>
+		</div>
 		<div class="nav">
 			<table class="nav-tab">
 				<tr>
@@ -445,16 +445,16 @@ def index_autores(cd):
 								</tr>
 							</table>
 		</div>
-		
+
 		<div class="main_content">
 			<table>
 
 						{% for el in artist %}
 				<tr>
 								<th><a href="{{el}}.html"><div class="hiper">{{el}}</div></a></th>
-				
+
 				</tr>
-				
+
 				{% endfor %}
 
 			</table>
@@ -475,7 +475,7 @@ def index_autores(cd):
 	#for j in cd:
 		#cd_artista.append(j.title.text)
 		#print(cd_artista)
-		
+
 
 
 def main():
@@ -484,6 +484,6 @@ def main():
 	create_page(cd)
 	index(cd)
 	relatorio()
-	search()
+	#search()
 	index_autores()
 main()
