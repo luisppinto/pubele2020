@@ -187,7 +187,7 @@ def relatorio():
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &ltyear&gt1988&lt/year&gt &lt/CD&gt<br>
 				...
 			</p>
-			<h2> Código.py </h2>
+			<h2> G8.py </h2>
 			<p class="conteudo_relatorio">
 				O ficheiro que deu origem a todo o website começa pelo import das librarias necessárias na resolução de algoritmos.
 			</p>
@@ -224,6 +224,69 @@ def relatorio():
 			</p>
 			<h3>Função create_page(cd)</h3>
 			<p class="codigo">
+				def create_page(cd):
+
+					page = j2.Template("""
+				<html>
+					<head>
+							<title>{{title}}</title
+						<meta charset="UTF-8"/>
+						<link rel="stylesheet" href="stylesheet.css">
+					</head>
+					<body>
+					<div class="header">
+								<h1>Catálogo de CDs</h1>
+						</div>
+						<div class="nav">
+							<table class="nav-tab">
+								<tr>
+										<th><a href="index.html"><div class="hed">Lista de Títulos</div></a></th>
+										<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
+										<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
+								</tr>
+										</table>
+						</div>
+
+						<div class="main_content">
+
+							<h1>{{newdic.title}}</h1>
+							<div class="art"><img src={{newdic.artwork}} alt="Album Artwork"></div>
+							<h2>{{newdic.artist}}</h2>
+							<p><b>Ano: </b>{{newdic.year}} <b>País: </b>{{newdic.country}} <img src="https://flagcdn.com/h20/{{newdic.country.lower()}}.png"> <b>Produtora: </b>{{newdic.company}} </p>
+							<p>{{newdic.description}}</p>
+							<a href="index.html">Voltar ao índice</a>
+							</div>
+					</body>
+				</html>
+				""")
+
+					for i in cd:
+						nomes=i.title.text
+						newdic={}
+						atitle = i.title
+						aartist = i.artist
+						aartwork = i.artwork
+						ayear = i.year
+						acountry = i.country
+						acompany = i.company
+						adescription = i.description
+
+						if atitle != None:
+							newdic['title']= i.title.text
+						if aartist != None:
+							newdic['artist']= i.artist.text
+						if aartwork != None:
+							newdic['artwork']= i.artwork.text
+						if ayear != None:
+							newdic['year']= i.year.text
+						if acountry != None:
+							newdic['country']= i.country.text
+						if acompany != None:
+							newdic['company']= i.company.text
+						if adescription != None:
+							newdic['description']= i.description.text
+						f_output = open('{}.html'.format(nomes),'w', encoding='utf-8')
+						print(page.render(newdic=newdic), file=f_output)
 				&nbsp&nbsp&nbsp def index(cd):<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp a = j2.Template("""<br>
 				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &lt!DOCTYPE html&gt<br>
