@@ -93,7 +93,7 @@ def index(cd):
 			<table>
                                 {% for el in title %}
 				<tr>
-                                        <th class="hiper"><a href="{{el}}.html">{{el}}</a></th>
+                                        <th><a href="{{el}}.html"><div class="hiper">{{el}}</div></a></th>
 				
 				</tr>
 				{% endfor %}
@@ -261,7 +261,7 @@ def relatorio():
 
 				table {width:100%}
 					                       
-                                th.hiper {                                        
+                                div.hiper {                                        
                                         border: 1px solid black;
                                         background-color:grey;
                                         padding-top: 15px;
