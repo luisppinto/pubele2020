@@ -39,7 +39,7 @@ def create_page(cd):
 				<tr>
 						<th><a href="index.html"><div class="hed">Lista de Titulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
-						<th><a href="codigo.txt"><div class="hed">Código</a></div></th>
+						<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
 				</tr>
 						</table>
 		</div>
@@ -152,7 +152,7 @@ def relatorio():
 				<tr>
 					<th><a href="index.html"><div class="hed">Lista de Titulos</div></a></th>
 						<th><a href="relatorio.html"><div class="hed">Relatório</div></a></th>
-										<th><a href="codigo.txt"><div class="hed">Código</a></div></th>
+										<th><a href="codigo.txt" target="_blank"><div class="hed">Código</a></div></th>
 								</tr>
 			</table>
 		</div>
@@ -364,7 +364,6 @@ def searchbar():
 
 def search(searchterm):
 
-	matches=[]
 	if searchterm != None:
 		with open('catalogotp1.xml') as f:
 			d=f.read()
