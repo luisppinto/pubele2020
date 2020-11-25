@@ -370,7 +370,6 @@ def search(searchterm):
                         d=f.read()
                         ad=bs(d,"xml")
                         results = ad.find_all(string=re.compile('.*{0}.*'.format(search)), recursive=True)
-
                         print('Foi encontrada a palavra "{0}" {1} vezes\n'.format(search, len(results)))
 
 def main():
