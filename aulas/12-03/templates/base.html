@@ -1,0 +1,16 @@
+<html>
+	<head>
+
+    {% block head %} {% endblock %}
+		<title>{{title}}</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<body>
+
+    {% block body %} {% endblock %}
+    <a href='/proverbios'>Provérbios</a><br>
+		<a href='proverbios/semana'>Provérbio da Semana</a><br>
+    <a href='/pessoas'>Pessoas</a>
+	</body>
+</html>
