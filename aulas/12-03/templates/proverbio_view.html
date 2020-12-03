@@ -1,12 +1,13 @@
-<html>
-	<head>
-		<title>{{title}}</title>
-		<meta charset="utf-8">
-	</head>
-	<body>
-		<h1>{{title}}</h1>
-		<li>{{p.texto}}</li>
-    <h2>Significado</h2>
-    <li>{{p.significado}}</li>
-	</body>
-</html>
+{% extends 'base.html' %}
+
+{% block head%}
+<title>{{p['title']}}</title>
+{% endblock %}
+
+
+{% block body%}
+<h1>{{p['title']}}</h1>
+
+<h2>Significado</h2>
+<p>{{p['significado']}}</p>
+{% endblock %}
