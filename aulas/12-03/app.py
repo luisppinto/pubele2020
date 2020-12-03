@@ -31,11 +31,3 @@ def semana():
 @app.route('/pessoas')
 def pessoas_view():
     return render_template('pessoas_view.html', title='Pessoas', pessoas=pessoas)
-
-
-
-
-
-
-
-
