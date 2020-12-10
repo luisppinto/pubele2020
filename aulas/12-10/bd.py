@@ -23,12 +23,7 @@ proverbios = [
     }
 ]
 
-with shelve.open('proverbios.bd') as s:
-    s['p0'] = {
-        'id': 0,
-        'title': 'Mais vale tarde do que nunca.',
-        'significado': 'Atrasei-me, mas ao menos cheguei.'
-    }
+
 
 pessoas = [
     'Pedro',
