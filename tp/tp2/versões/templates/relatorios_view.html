@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head%}
+<title>{{title}}</title>
+{% endblock %}
+
+
+{% block body%}
+<h1>{{title}}</h1>
+<ul>
+    {% for p in relatorios: %}
+        <li><a href="/relatorios/relatorio/{{p}}">{{p}}</a></li>
+    {% endfor %}
+</ul>
+
+<hr>
+'''
+<h3>Adicionar relatório</h3>
+<form action="relatorios/novo" method='post'>
+  <input type="file" id="myFile" name="filename">
+  <input type="submit">
+</form>
+{% endblock %}
