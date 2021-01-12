@@ -1,0 +1,21 @@
+TP2 PUB ELETRONICA
+
+ENUNCIADO 1: RELATÓRIOS 
+Relatórios consultáveis via WEB:
+a) interface flask (permitir perguntar coisas ao relatorio (navegar//pesquisar))
+
+base inicial ->representação base2 (que fique a dar mais jeito pra pesquisa, etc...)
+ 
+
+ENUNCIADO 2: 
+C-10
+IC-10 FILE TYPE XLSX 
+Fazer as cenas das aulas (TABELAS)
+
+ENUNCIADO 3: 
+
+USAR ARQUIVOS (CARTAS, ETC...) + FICHEIRO DE META INFORMAÇÃO 
+(YAML, JASON)
+1 - IR BUSCAR OS FICHEIROS E COLOCAR NUMA ESTRUTURA NOSSA
+2 - PERMITIR NAVAGAÇÃO OU PESQUISA NESSA NOSSA ESTRUTURA
+3- MOSTRAR INFORMAÇÃO EM DOSES "DIGERIVEIS"
