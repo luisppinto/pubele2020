@@ -74,7 +74,7 @@ def relatorios_resultado():
                     t.append(text[pos:pos+len(res[0])+500].replace(res[0],'*'+res[0]+'*'))
                 else:
                     t.append(text.replace(res[0],'*'+res[0]+'*'))
-    return render_template('resultados_pesquisa_view.html', title=rf'Relatórios que contêm o padrão"{pesquisa}"', relatorios=l, i=)
+    return render_template('resultados_pesquisa_view.html', title=rf'Relatórios que contêm o padrão"{pesquisa}"', relatorios=l)
 
 # api para relatorios
 
