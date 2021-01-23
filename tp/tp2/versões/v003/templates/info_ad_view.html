@@ -12,7 +12,7 @@
 <h1>Lista de Autores do Projeto</h1>
 <ul>
     {% for autor in autores: %}
-        <li><p>Nome:{{autor[nome]}}</p><p>Número de Aluno:{{autor[numero]}}</p></li>
+        <li><p>Nome:{{autor.name}}</p><p>Número de Aluno:{{autor.number}}</p></li>
     {% endfor %}
 </ul>
 

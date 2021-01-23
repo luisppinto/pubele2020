@@ -10,11 +10,11 @@
 -->
 <!-- Falta aqui a parte de procurar o relatório -->
 {% block body%}
-index
+
 <table>
 	{% for cd in cds: %}
 		<tr>
-			<a href="/relatorios/relatorio/{{cd.title}}"><th>{{cd.title}}</th></a><br>
+			<a href="cds/{{cd.title}}"><th>{{cd.title}}</th></a><br>
 			<th>Remover</th>
 		</tr>
 	{% endfor %}
