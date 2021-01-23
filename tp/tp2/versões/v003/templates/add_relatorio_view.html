@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head%} <title> Novo Relatório </title> {% endblock %}
+<!-- 
+
+	Neste caso no body aparece um form para ser possivel postar o novo relatório
+	O relatório deve obedecer ao numero de parametros pré-determinado (Melhorar depois para qualquer conteudo) ( Neste caso está para receber os dados do ficheiro?? )
+
+-->
+{% block body%}
+	<h1> Adicionar Relatório </h1>
+	<form action="relatorios/novo" method='post'>
+		<input type="file" id="myFile" name="filename">
+		<input type="submit">
+	</form>
+{% endblock %}
