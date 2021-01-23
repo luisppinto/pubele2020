@@ -37,3 +37,21 @@ def info_ad_view():
 def api_get_autores():
 	ss = autores
 	return json.dumps(ss)
+
+	# ADICIONA UM NOVO CD
+@app.route('/cds/novo', methods=['POST'])
+def cds_novo():
+
+    title = request.form.get('title')
+    artist = request.form.get('artist')
+	artwork = request.form.get('artwork')
+	country = request.form.get('country')
+	company = request.form.get('company')
+	description = request.form.get('description')
+	year = request.form.get('year')
+
+    #s[title] = signi
+    s.sync()
+    ps = list(s.keys())
+
+    return render_template('cd_view.html', title='CDs', cds=ps)
