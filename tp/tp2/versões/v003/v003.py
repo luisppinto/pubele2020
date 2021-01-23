@@ -39,6 +39,7 @@ def api_get_autores():
 	ss = autores
 	return json.dumps(ss)
 
+	# ADICIONAR CD
 @app.route('/api/novocd', methods=['POST'])
 def api_cd_novo():
 
@@ -56,3 +57,16 @@ def insert(cd):
 		s[cd['artwork']] = cd['artwork']
 		s[cd['id']] = cd['id']
 		return s
+
+@app.route('/cds/novo', methods=['POST'])
+def cds_novo():
+
+	title = request.form.get('title')
+	artist = request.form.get('artist')
+	artwork = request.form.get('artwork')
+	country = request.form.get('country')
+	company = request.form.get('company')
+	description = request.form.get('description')
+	year = request.form.get('year')
+
+	return render_template('index.html', title='CDs', cds=ps)
