@@ -42,16 +42,16 @@ def api_get_autores():
 @app.route('/cds/novo', methods=['POST'])
 def cds_novo():
 
-    title = request.form.get('title')
-    artist = request.form.get('artist')
+	title = request.form.get('title')
+	artist = request.form.get('artist')
 	artwork = request.form.get('artwork')
 	country = request.form.get('country')
 	company = request.form.get('company')
 	description = request.form.get('description')
 	year = request.form.get('year')
 
-    #s[title] = signi
-    s.sync()
-    ps = list(s.keys())
+	#s[title] = signi
+	s.sync()
+	ps = list(s.keys())
 
-    return render_template('cd_view.html', title='CDs', cds=ps)
+	return render_template('cd_view.html', title='CDs', cds=ps)
