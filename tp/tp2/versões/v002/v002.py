@@ -4,26 +4,26 @@ import requests
 # from re import *
 # from povoamento import relatorios, pessoas
 # import db
-from db_proverbios import *  
+from db_proverbios import *
 
 app = Flask(__name__) # required
 
-	# 1º temos a defenição inicial do conteudo de cada relatório 
+	# 1º temos a defenição inicial do conteudo de cada relatório
 	# é desenvolvido a partir de uma lista de dicionários
-	# o dicionario é constituido por key e value 
+	# o dicionario é constituido por key e value
 	# No caso de proverbios 'key'= descricao,'value'= significado
 
 proverbios = [ {'descricao': 'quem tudo quer tudo perde', 'significado':'nao sejas ambicioso demais'},
 	{'descricao': 'Quem vai a guerra da e leva', 'significado':'As ações tem consequencias'}]
 
-    # Key = e value = 
+    # Key = e value =
 # relatório1 = [
 
 	# {'titulo': 'TP1- Internet introduction and Satellite Communications'},
 	# {'titulo': 'Introdução','text': 'A Internet é uma rede de redes de computadores que trocam informações entre si.Tanto a administração quanto a operação da Internet são descentralizadas, apenas alguns serviços tais como definição de padrões e pesquisas e ainda a distribuição dos endereços são administrados por instituições regulamentadoras. Uma das principais instituições é a Internet Engineering Task Force (IETF).A IETF é um grupo de pesquisadores responsáveis pelo desenvolvimento de padrões a serem divulgados através de Request For Comments (RFCs). A comunicação via satélite utiliza ondas de rádio, enviadas por satélites artificiais em órbita da Terra, como forma de transmitir dados.Este tipo de comunicação tem a vantagem de poder estabelecer contato com navios e aviões, algo impossível de ser feito por meio de cabos. Também mensagens enviadas por meio de satélites podem chegar até as regiões mais isoladas do planeta, mesmo que o local não tenha infra-estrutura de cabos. Relativamente à comunicação via satélite, esta tornou possível vários progressos, dentro dos quais a área das geociências, as telecomunicações e o transporte aéreo.  Isto melhorou consideravelmente a segurança e o desenvolvimento mundial.'},
 	# {'titulo':'Part I : Internet, IETF and RFCS','subtitulo': '1. IETF', 'text': 'IETF permite um funcionamento melhor da Internet ao produzir documentos técnicos relevantes e de alta qualidade que influenciam a maneira como as pessoas projetam, usam e gerenciam a Internet. [1] O trabalho técnico do IETF divide-se por grupos de trabalho, que estão organizados por tópicos em diversas áreas (exemplos: routing, transporte, segurança, etc.), e são geridos pelos respetivos diretores, sendo estes membros do The Internet Engineering Steering Group (IESG). Muito do trabalho do IETF é realizado por mailing lists. Nas suas reuniões, o IETF encoraja à colaboração e desenvolvimento de utilidades, ideias, exemplos de códigos, e soluções que demonstrem implementações práticas dos standards do IETF. O IAB (Internet Architecture Board) e o IRTF (Internet Research Task Force) complementam o trabalho do IETF, fornecendo, respetivamente, uma direção técnica de longo alcance para o desenvolvimento da internet e promovendo pesquisa importante para a evolução da mesma.'}]
 
-	# 2º é necessário a introdução destes dados na BD 
+	# 2º é necessário a introdução destes dados na BD
 for proverbio in proverbios:
 	insert(proverbio)
 
@@ -34,12 +34,12 @@ for proverbio in proverbios:
    # db.insert_p(pessoa)
 
    # 3º Criação das rotas da app
-   # Homepage 
+   # Homepage
 @app.route('/')
-def index_view(): 
+def index_view():
 	return render_template('index.html')
 
-	# Homepage 
+	# Homepage
 	# Conteudo do Homepage -> Barra de Navegação [Botões com links - (Lista de Relatórios | Procurar Relatório | Adicionar Relatório | Remover Relatório | Modificar Relatório | Informações Adicionais )] {html}
 	# Esta página deve coincidir com o botão Lista de Relatórios {html}
 	# Cada Relatório na página deve ser um link para (Ver Relatório){html}
@@ -55,7 +55,7 @@ def index_view():
 #                h.append(tag)
 #    return render_template('index.html', titles=ps, hashtags=h, pessoas=pessoas)
 
-	# 
+	#
 @app.route('/proverbios', methods=['GET'])
 def get_proverbios_view():
 
@@ -89,7 +89,7 @@ def get_proverbio_view(proverbio):
 
 	res = requests.get('http://localhost:5000/api/proverbios/'+proverbio)
 	p = json.loads(res.content)
-    
+
 	return render_template('proverbio_view.html', p=p)
 
 # @app.route('/relatorios/<titulo>', methods=['GET'])
@@ -147,7 +147,7 @@ def api_get_proverbios():
 
 @app.route('/api/proverbios', methods=['POST'])
 def api_post_proverbio():
-    
+
 	data = dict(request.form)
 	insert(data)
 	return json.dumps(data)
