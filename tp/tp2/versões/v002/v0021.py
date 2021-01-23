@@ -4,7 +4,7 @@ import requests
 # from re import *
 from db import relatorios, autores
 # import db
-from db_proverbios import *
+# from db_proverbios import *
 
 app = Flask(__name__) # required
 
