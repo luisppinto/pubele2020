@@ -8,9 +8,22 @@
 
 -->
 {% block body%}
-	<h1> Adicionar CD </h1>
+	<h3>Adicionar CD</h3>
 	<form action="cds/novo" method='post'>
-		<input type="file" id="myFile" name="filename">
-		<input type="submit">
+		<label>Título</label><br>
+		<input type="text" name="title"><br>
+		<label>Artista</label><br>
+		<input type="text" name="artista"><br>
+		<label>Artwork</label><br>
+		<input type="text" name="artwork"><br>
+		<label>País</label><br>
+		<input type="text" name="country"><br>
+		<label>Produtora</label><br>
+		<input type="text" name="company"><br>
+		<label>Descrição</label><br>
+		<input type="text" name="description"><br>
+		<label>Ano</label><br>
+		<input type="text" name="year"><br>
+		<input type="submit" value="Submit">
 	</form>
 {% endblock %}
