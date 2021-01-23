@@ -5,7 +5,7 @@ from db_cds import *
 
 app = Flask(__name__) # required
 
-#s = shelve.open('cds.db')
+s = shelve.open('cds.db')
 
 	# INDEX
 	# Lista de CDs
@@ -54,4 +54,4 @@ def cds_novo():
 	s.sync()
 	ps = list(s.keys())
 
-	return render_template('cd_view.html', title='CDs', cds=ps)
+	return render_template('index.html', title='CDs', cds=ps)
