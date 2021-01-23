@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
 
+{% block head%} <title>Homepage</title> {% endblock %}
+<!-- 
 
-{% block head %}
-<title>Index</title>
-{% endblock %}
+	Neste caso no body aparece a lista de relatórios como link para "ver relatório".( posteriormente em ver relatorio adicionamos tudo a caixas de texto de modo a ser editavel e podemos até ter uma primeira versão nao editavel e depois um botao para entrar em modo editavel)
+	Na mesma linha do titulo é adicionado um botão para o apagar.
+	O botão remover deve apagar o titulo e o relatório a ele associado e devolver a mesma página sem esse elemento
 
-
-{% block body %}
-<a class="btn btn-info" href="/Relatórios">Relatórios</a><br><br>
-<a class="btn btn-info" href="/autores">Autores</a>
+-->
+<!-- Falta aqui a parte de procurar o relatório -->
+{% block body%}
+index
+<table>
+	<tr>
+		{% for relatorio in relatorios: %}
+			<a href="/relatorios/relatorio/{{p}}"><th>{{p}}</th></a>
+			<th>Remover</th>
+		{% endfor %}
+	</tr>
+</table>
 {% endblock %}
