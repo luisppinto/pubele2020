@@ -4,8 +4,15 @@
 
 <!-- Neste caso aparece o titulo e o valor associado ao titulo -->
 {% block body%}
-<h1>{{p['title']}}</h1>
-
-<h2>Significado</h2>
-<p>{{p['significado']}}</p>
+<ul>
+    {% for cd in cds: %}
+        <p>Título:{{cd.title}}</p>
+        <p>Artista:{{cd.artist}}</p>
+        <p>Artwork:{{cd.artwork}}</p>
+        <p>Paí:{{cd.country}}</p>
+        <p>Produtora:{{cd.company}}</p>
+        <p>Descrição:{{cd.description}}</p>
+        <p>Ano:{{cd.year}}</p>
+    {% endfor %}
+</ul>
 {% endblock %}

@@ -50,7 +50,7 @@ def cds_novo():
 	description = request.form.get('description')
 	year = request.form.get('year')
 
-	#s[title] = signi
+	s[title] = signi
 	s.sync()
 	ps = list(s.keys())
 
