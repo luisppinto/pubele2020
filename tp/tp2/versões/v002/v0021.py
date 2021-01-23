@@ -24,8 +24,8 @@ app = Flask(__name__) # required
 	# {'titulo':'Part I : Internet, IETF and RFCS','subtitulo': '1. IETF', 'text': 'IETF permite um funcionamento melhor da Internet ao produzir documentos técnicos relevantes e de alta qualidade que influenciam a maneira como as pessoas projetam, usam e gerenciam a Internet. [1] O trabalho técnico do IETF divide-se por grupos de trabalho, que estão organizados por tópicos em diversas áreas (exemplos: routing, transporte, segurança, etc.), e são geridos pelos respetivos diretores, sendo estes membros do The Internet Engineering Steering Group (IESG). Muito do trabalho do IETF é realizado por mailing lists. Nas suas reuniões, o IETF encoraja à colaboração e desenvolvimento de utilidades, ideias, exemplos de códigos, e soluções que demonstrem implementações práticas dos standards do IETF. O IAB (Internet Architecture Board) e o IRTF (Internet Research Task Force) complementam o trabalho do IETF, fornecendo, respetivamente, uma direção técnica de longo alcance para o desenvolvimento da internet e promovendo pesquisa importante para a evolução da mesma.'}]
 
 	# 2º é necessário a introdução destes dados na BD
-for relatorio in relatorios:
-	insert(relatorio)
+#for relatorio in relatorios:
+#	insert(relatorio)
 
 # for relatorio in relatorios:
    # db.insert(relatorio)
