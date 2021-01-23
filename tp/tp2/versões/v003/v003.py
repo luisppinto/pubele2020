@@ -5,7 +5,7 @@ from db_cds import *
 
 app = Flask(__name__) # required
 
-s = shelve.open('cds.db')
+#s = shelve.open('cds.db')
 
 	# INDEX
 	# Lista de CDs
