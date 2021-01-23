@@ -48,11 +48,11 @@ def api_cd_novo():
 
 def insert(cd):
 	with shelve.open('cds.db', writeback=True) as s:
-	s[cd['title']] = cd['title']
-	s[cd['artist']] = cd['artist']
-	s[cd['year']] = cd['year']
-	s[cd['country']] = cd['country']
-	s[cd['company']] = cd['company']
-	s[cd['artwork']] = cd['artwork']
-	s[cd['id']] = cd['id']
-	return s
+		s[cd['title']] = cd['title']
+		s[cd['artist']] = cd['artist']
+		s[cd['year']] = cd['year']
+		s[cd['country']] = cd['country']
+		s[cd['company']] = cd['company']
+		s[cd['artwork']] = cd['artwork']
+		s[cd['id']] = cd['id']
+		return s
