@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect
 import json
 import requests
 # from re import *
-# from povoamento import relatorios, pessoas
+from db import relatorios, autores
 # import db
 from db_proverbios import *
 
@@ -13,8 +13,8 @@ app = Flask(__name__) # required
 	# o dicionario é constituido por key e value
 	# No caso de proverbios 'key'= descricao,'value'= significado
 
-proverbios = [ {'descricao': 'quem tudo quer tudo perde', 'significado':'nao sejas ambicioso demais'},
-	{'descricao': 'Quem vai a guerra da e leva', 'significado':'As ações tem consequencias'}]
+# proverbios = [ {'descricao': 'quem tudo quer tudo perde', 'significado':'nao sejas ambicioso demais'},
+	# {'descricao': 'Quem vai a guerra da e leva', 'significado':'As ações tem consequencias'}]
 
     # Key = e value =
 # relatório1 = [
@@ -24,8 +24,8 @@ proverbios = [ {'descricao': 'quem tudo quer tudo perde', 'significado':'nao sej
 	# {'titulo':'Part I : Internet, IETF and RFCS','subtitulo': '1. IETF', 'text': 'IETF permite um funcionamento melhor da Internet ao produzir documentos técnicos relevantes e de alta qualidade que influenciam a maneira como as pessoas projetam, usam e gerenciam a Internet. [1] O trabalho técnico do IETF divide-se por grupos de trabalho, que estão organizados por tópicos em diversas áreas (exemplos: routing, transporte, segurança, etc.), e são geridos pelos respetivos diretores, sendo estes membros do The Internet Engineering Steering Group (IESG). Muito do trabalho do IETF é realizado por mailing lists. Nas suas reuniões, o IETF encoraja à colaboração e desenvolvimento de utilidades, ideias, exemplos de códigos, e soluções que demonstrem implementações práticas dos standards do IETF. O IAB (Internet Architecture Board) e o IRTF (Internet Research Task Force) complementam o trabalho do IETF, fornecendo, respetivamente, uma direção técnica de longo alcance para o desenvolvimento da internet e promovendo pesquisa importante para a evolução da mesma.'}]
 
 	# 2º é necessário a introdução destes dados na BD
-for proverbio in proverbios:
-	insert(proverbio)
+for relatorio in relatorios:
+	insert(relatorio)
 
 # for relatorio in relatorios:
    # db.insert(relatorio)
@@ -56,13 +56,13 @@ def index_view():
 #    return render_template('index.html', titles=ps, hashtags=h, pessoas=pessoas)
 
 	#
-@app.route('/proverbios', methods=['GET'])
-def get_proverbios_view():
+@app.route('/relatorios', methods=['GET'])
+def get_relatorios_view():
 
-	res = requests.get('http://localhost:5000/api/proverbios')
+	res = requests.get('http://localhost:5000/api/relatorios')
 	ps = json.loads(res.content)
 
-	return render_template('proverbios_view.html', proverbios=ps)
+	return render_template('relatorios_view.html', relatorios=ps)
 
 # @app.route('/relatorios', methods=['GET'])
 # def get_relatorios():
@@ -70,13 +70,13 @@ def get_proverbios_view():
 #    ps = json.loads(res.content)
 #    return render_template('relatorios_view.html', title='Relatórios', relatorios=ps)
 
-@app.route('/proverbios', methods=['POST'])
-def post_proverbio_view():
+@app.route('/relatorios', methods=['POST'])
+def post_relatorio_view():
 
 	data = dict(request.form)
-	requests.post('http://localhost:5000/api/proverbios', data=data)
+	requests.post('http://localhost:5000/api/relatorios', data=data)
 
-	return redirect('http://localhost:5000/proverbios')
+	return redirect('http://localhost:5000/relatorios')
 
 # @app.route('/relatorios', methods=['POST'])
 # def post_relatorio():
@@ -84,13 +84,13 @@ def post_proverbio_view():
 #    requests.post('http://localhost:5000/api/relatorios', data=data)
 #    return redirect('http://localhost:5000/relatorios')
 
-@app.route('/proverbios/<proverbio>', methods=['GET'])
-def get_proverbio_view(proverbio):
+@app.route('/relatorios/<relatorio>', methods=['GET'])
+def get_proverbio_view(relatorio):
 
-	res = requests.get('http://localhost:5000/api/proverbios/'+proverbio)
+	res = requests.get('http://localhost:5000/api/relatorios/'+relatorio)
 	p = json.loads(res.content)
 
-	return render_template('proverbio_view.html', p=p)
+	return render_template('relatorio_view.html', p=p)
 
 # @app.route('/relatorios/<titulo>', methods=['GET'])
 # def get_relatorio(titulo):
@@ -132,8 +132,8 @@ def get_proverbio_view(proverbio):
 #    return render_template('resultados_pesquisa_view.html', title=rf'Relatórios que contêm o padrão"{pesquisa}"', relatorios=l)
 
 
-@app.route('/api/proverbios', methods=['GET'])
-def api_get_proverbios():
+@app.route('/api/relatorios', methods=['GET'])
+def api_get_relatorios():
 
 	ps = find_all()
 	return json.dumps(ps)
@@ -145,8 +145,8 @@ def api_get_proverbios():
 #    ps = db.find_all()
 #    return json.dumps(ps)
 
-@app.route('/api/proverbios', methods=['POST'])
-def api_post_proverbio():
+@app.route('/api/relatorios', methods=['POST'])
+def api_post_relatorio():
 
 	data = dict(request.form)
 	insert(data)
@@ -167,10 +167,10 @@ def api_post_proverbio():
 
 #    return json.dumps(db.find_all())
 
-@app.route('/api/proverbios/<proverbio>', methods=['GET'])
-def api_get_proverbio(proverbio):
+@app.route('/api/relatorios/<relatorio>', methods=['GET'])
+def api_get_relatorio(relatorio):
 
-	p = find_one(proverbio)
+	p = find_one(relatorio)
 	return json.dumps(p)
 
 # @app.route('/api/relatorios/<titulo>', methods=['GET'])
