@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import json
 import requests
+from db_cds import *
 from dbcds2 import *
 
 cds = [
@@ -88,12 +89,18 @@ for cd in cds:
 	# Informações adicionais
 
 		# FRONT END
-        # Lista CDs 
+        # Lista CDs
 @app.route('/', methods=['GET'])
 def index_view():
     res = requests.get('http://localhost:5000/api/cds')
     ps = json.loads(res.content)
     return render_template('index.html', cds=ps)
+
+@app.route('/', methods=['POST'])
+def delete_cd():
+    requests.post('http://localhost:5000/api/cds')
+    return render_template('index.html')
+
 
         # Lista autores
 @app.route('/autores', methods=['GET'])
@@ -103,11 +110,11 @@ def info_ad_view():
 	return render_template('info_ad_view.html', autores=ss)
 
 	   # CD Individual
-@app.route('/cds/<cd>', methods=['GET'])
-def get_cd_view(cd):
-    res = requests.get('http://localhost:5000/api/cds'+ cd)
-    p = json.loads(res.content)
-    return render_template('cd_view.html', p=p)
+@app.route('/cds/<title>', methods=['GET'])
+def get_cd_view(title):
+    res = requests.get('http://localhost:5000/api/cds'+title)
+    cd = json.loads(res.content)
+    return render_template('cd_view.html', p=cd)
 
 @app.route('/cds/novocd')
 def novo_cd_view():
@@ -125,11 +132,11 @@ def api_get_cds():
 def api_get_autores():
 	ss = autores
 	return json.dumps(ss)
-	
+
         # CD Individual
-@app.route('/api/cds/<cd>', methods=['GET'])
-def api_get_cd(cd):
-    p = find_one(cd)
+@app.route('/api/cds/<title>', methods=['GET'])
+def api_get_cd(title):
+    p = find_one(title)
     return json.dumps(p)
 
         # Inserir CD
@@ -138,3 +145,10 @@ def api_post_cd():
     data = dict(request.form)
     insert(data)
     return json.dumps(data)
+
+    #Remove CD
+@app.route('/api/cds/<title>', methods=['POST'])
+def api_delete_relatório(title):
+
+    d = delete(title)
+    return json.dumps(d)

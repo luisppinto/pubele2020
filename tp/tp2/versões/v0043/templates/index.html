@@ -12,11 +12,10 @@
 {% block body%}
 
 <table>
-	{{cd}}
+	
 	{% for p in cds %}
 		<tr>
-			<th><a href="/cds/{{p}}">{{p}}</a></th>
-			<th>Remover</th>
+			<th><a href="/cds/{{p}}">{{p}}</a><button type = "button" method=post class="deletebtn"><input type=submit value=Delete name=delete_cd</button></th>
 		</tr>
 	{% endfor %}
 </table>
