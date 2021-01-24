@@ -69,6 +69,7 @@ cds = {
         'description': 'Unchain My Heart is the eleventh studio album by Joe Cocker, released in 1987.',
         'year': '1987'}
     },
+    {7:
     {
         'id': 6,
         'title': 'Picture Book',
@@ -77,7 +78,7 @@ cds = {
         'country': 'GB',
         'company': 'Elektra',
         'description': 'Picture Book is the debut album by British pop and soul group Simply Red, released in October 1985.',
-        'year': '1985'
+        'year': '1985'}
     }
 }
 
