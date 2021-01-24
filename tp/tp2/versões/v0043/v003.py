@@ -1,11 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import json
 import requests
-<<<<<<< HEAD
-from db_cds import *
-=======
 import db_cds
->>>>>>> b1bdfccac956e699fd884e99ee64a15665911f39
 
 app = Flask(__name__) # required
 
