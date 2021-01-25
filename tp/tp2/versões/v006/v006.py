@@ -154,15 +154,15 @@ def api_post_cd():
 # Ainda Não operacionais
 # -------------------------------------------------  Apagar CD --------------------------------
 # ----------------------------------------------------FRONTEND
+#@app.route('/delete/<title>', methods=['POST'])
+#def remove(title):
+#    p = Object.query.get_or_404(title)
+#    delete(p)
+#    return redirect('/')
 @app.route('/delete/<title>', methods=['POST'])
-def remove(title):
-    p = Object.query.get_or_404(title)
-    delete(p)
-    return redirect('/')
-#@app.route('/cds/<title>', methods=['POST'])
-#def delete_cd(title):
-#    requests.post('http://localhost:5000/api/cds/'+ title)
-#    return redirect('http://localhost:5000/')
+def delete_cd(title):
+    requests.post('http://localhost:5000/api/cds/'+ title)
+    return redirect('http://localhost:5000/')
 
 # ----------------------------------------------------BACKEND
 @app.route('/api/cds/<title>', methods=['POST'])
