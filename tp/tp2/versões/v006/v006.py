@@ -204,7 +204,7 @@ def procura_cd():
         print (cd)
         return render_template('cd_view.html', p=cd) # com o cd
 
-    else if (len(lista_cds_encontrados)>1):
+    elif (len(lista_cds_encontrados)>1):
         res3 = requests.get('http://localhost:500/api/resultados')
         cds= json.loads(res3.content)
         print(cds)
