@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block head%} <title> Search Results </title> {% endblock %}
+
+{% block body%}
+	<h1>Resultados da Pesquisa</h1>
+	{% for cd in lista_cds_encontrados: %}
+		<p><a href="{{ url_for('cd['title']) }}"><h3>cd['title']</h3></a></p>
+		
+
+{% endblock %}
+
+{{cd}}

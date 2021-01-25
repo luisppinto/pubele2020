@@ -204,8 +204,12 @@ def procura_cd():
         print (cd)
         return render_template('cd_view.html', p=cd) # com o cd
 
+    else if (len(lista_cds_encontrados)>1):
+        res3 = requests.get('http://localhost:500/api/resultados')
+        cds= json.loads(res3.content)
+        print(cds)
+        return render_template('search_resultas.html', p=cds ) # Lista de encontrados ( titulo com link )
 
-    #else if (lista_cds_encontrados == 0):
-    #    return render_template('') # Não encontrado
-    #else
-    #    return render_template('') # Lista de encontrados ( titulo com link )
+    if not lista_cds_encontrados:
+        flash ('No results found!')
+        return redirect ('/') # Não encontrado
