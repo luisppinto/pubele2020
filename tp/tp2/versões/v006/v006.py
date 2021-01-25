@@ -2,7 +2,8 @@
 from flask import Flask, render_template, request, redirect
 import json
 import requests
-from dbcds2 import *
+import db_cd
+import re
 
 # Lista Inicial de CDs - Catálogo
 cds = [
