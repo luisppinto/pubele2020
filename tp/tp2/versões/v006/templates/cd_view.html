@@ -1,6 +1,42 @@
 {% extends 'base.html' %}
 <!-- O titulo passa a ser o nome do titulo do relatorio -->
-{% block head%} <title>{{p[title]}}</title> {% endblock %}
+{% block head%} <title>{{p[title]}}</title>
+
+	<style>
+		body {background-color:#ECF9F9;
+			  width:100%;
+			  align-content: center;}
+		div.nav {width:75%;
+				align-self: center;
+				padding-left: 12.5%}
+		div.hed {padding-top: 15px;
+				padding-bottom: 15px;
+				text-align:center;
+				margin-top:5px;
+				font-size: 20px;
+				color: black;
+				border-radius: 20px;}
+		table.tab_nav {width:100%;}
+		th.columnav{background-color:#C7DBED;
+			border:0.5px solid lightgrey;
+			height: 40px;
+			width:25%;}
+		div.contents {
+
+			width:100%;
+			padding-top: 50px;
+			padding-bottom:50px;
+			padding-left:12.5%;
+			align-content: center;}
+		table.content {
+			border-radius: 20px;
+			background-color:#C7DBED;
+			width:75%;
+			padding-top:75px;
+			padding-bottom:75px;
+			align-content: center;}
+	</style>
+{% endblock %}
 
 <!-- Neste caso aparece o titulo e o valor associado ao titulo -->
 {% block body%}
