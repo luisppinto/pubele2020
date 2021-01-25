@@ -17,3 +17,8 @@ def delete(title):
 	with shelve.open('cds.db', writeback=True) as s:
 		del s[title]
 		return list(s.keys())
+
+def update(cd):
+    with shelve.open('cds.db', writeback=True) as s:
+        s[cd['title']] = cd
+        return s
