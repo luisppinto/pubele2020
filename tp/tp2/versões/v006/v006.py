@@ -1,4 +1,4 @@
-# Imports 
+# Imports
 from flask import Flask, render_template, request, redirect
 import json
 import requests
@@ -76,7 +76,7 @@ cds = [
         'description': 'Picture Book is the debut album by British pop and soul group Simply Red, released in October 1985.',
         'year': '1985'
     }]
-# Lista de Autores 
+# Lista de Autores
 autores = [
     {'name': 'Bruno Rebelo Lopes', 'number': '57768'},
 			{'name':'Morgana Sacramento Ferreira','number':'93779'},
@@ -97,13 +97,13 @@ def index_view():
     ps = json.loads(res.content)
     return render_template('index.html', cds=ps)
 
-# ----------------------------------------------------BACKEND 
+# ----------------------------------------------------BACKEND
 @app.route('/api/cds', methods=['GET'])
 def api_get_cds():
     ps = find_all()
     return json.dumps(ps)
 
-# ------------------ Lista de Autores - Informações Adicionais ----------------------------- 
+# ------------------ Lista de Autores - Informações Adicionais -----------------------------
 # ----------------------------------------------------FRONTEND
 @app.route('/autores', methods=['GET'])
 def info_ad_view():
@@ -130,13 +130,13 @@ def get_cd_view(title):
 def api_get_cd(title):
     p = find_one(title)
     return json.dumps(p)
-        
+
 # ------------------------------------------------- Add New CD --------------------------------
 # ----------------------------------------------------FRONTEND
 @app.route('/cds/novocd')
-def new_cd_view():    
+def new_cd_view():
     return render_template('add_cd_view.html')
- 
+
 
 @app.route('/cds/novocd',methods=['POST'])
 def post_cd():
@@ -144,7 +144,7 @@ def post_cd():
     requests.post('http://localhost:5000/api/cds/novocd', data=data)
     return redirect('http://localhost:5000/')
 # ----------------------------------------------------BACKEND
-  
+
 @app.route('/api/cds/novocd',methods=['POST'])
 def api_post_cd():
     data = dict(request.form)
@@ -154,10 +154,15 @@ def api_post_cd():
 # Ainda Não operacionais
 # -------------------------------------------------  Apagar CD --------------------------------
 # ----------------------------------------------------FRONTEND
-@app.route('/cds/<title>', methods=['POST'])
-def delete_cd(title):
-    requests.post('http://localhost:5000/api/cds/'+ title)
-    return redirect('http://localhost:5000/')
+@app.route('/delete/<title>', methods=['POST'])
+def remove(title):
+    object = Object.query.get_or_404(title)
+    delete(object)
+    return redirect('/')
+#@app.route('/cds/<title>', methods=['POST'])
+#def delete_cd(title):
+#    requests.post('http://localhost:5000/api/cds/'+ title)
+#    return redirect('http://localhost:5000/')
 
 # ----------------------------------------------------BACKEND
 @app.route('/api/cds/<title>', methods=['POST'])

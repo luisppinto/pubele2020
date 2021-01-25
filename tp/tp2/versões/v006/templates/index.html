@@ -2,7 +2,7 @@
 {% block head%} <title>Homepage</title>
 
 	<style>
-		body {background-color:#ECF9F9; 
+		body {background-color:#ECF9F9;
 			  width:100%;
 			  align-content: center;}
 		div.nav {width:75%;
@@ -17,7 +17,7 @@
 				border-radius: 20px;}
 		table.tab_nav {width:100%;}
 		th.columnav{background-color:#C7DBED;
-			border:0.5px solid lightgrey; 
+			border:0.5px solid lightgrey;
 			height: 40px;
 			width:25%;}
 		div.contents {
@@ -35,11 +35,11 @@
 			padding-bottom:75px;
 			align-content: center;}
 
-		
-		
+
+
 	</style>
 {% endblock %}
-<!-- 
+<!--
 
 	Neste caso no body aparece a lista de relatórios como link para "ver relatório".( posteriormente em ver relatorio adicionamos tudo a caixas de texto de modo a ser editavel e podemos até ter uma primeira versão nao editavel e depois um botao para entrar em modo editavel)
 	Na mesma linha do titulo é adicionado um botão para o apagar.
@@ -50,14 +50,14 @@
 {% block body%}
 <div class='contents'>
 	<table class='content'>
-	
+
 	{% for p in cds %}
 			<tr>
 				<th>
 					<a href="/cds/{{p}}">{{p}}</a>
 				</th>
 				<th>
-					<form action="cds/" method="post">
+					<form action="'/delete/<title>'" method="post">
 						<button type ="submit"> Delete </button>
 					</form>
 				</th>
