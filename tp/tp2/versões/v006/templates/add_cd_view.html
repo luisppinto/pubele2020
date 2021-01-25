@@ -1,0 +1,28 @@
+  
+{% extends 'base.html' %}
+
+{% block head%} <title> Novo CD </title> {% endblock %}
+<!--
+	Neste caso no body aparece um form para ser possivel postar o novo relatório
+	O relatório deve obedecer ao numero de parametros pré-determinado (Melhorar depois para qualquer conteudo) ( Neste caso está para receber os dados do ficheiro?? )
+-->
+{% block body%}
+	<h3>Adicionar CD</h3>
+	<form action="novocd" method='POST'>
+		<label>Título</label><br>
+		<input type="text" name="title"><br>
+		<label>Artista</label><br>
+		<input type="text" name="artist"><br>
+		<label>Artwork</label><br>
+		<input type="text" name="artwork"><br>
+		<label>País</label><br>
+		<input type="text" name="country"><br>
+		<label>Produtora</label><br>
+		<input type="text" name="company"><br>
+		<label>Descrição</label><br>
+		<input type="text" name="description"><br>
+		<label>Ano</label><br>
+		<input type="text" name="year"><br>
+		<input type="submit" value="Submit">
+	</form>
+{% endblock %}
