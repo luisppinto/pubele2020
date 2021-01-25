@@ -138,7 +138,6 @@ def api_get_cd(title):
 def new_cd_view():
     return render_template('add_cd_view.html')
 
-
 @app.route('/cds/novocd',methods=['POST'])
 def post_cd():
     data = dict(request.form)
@@ -164,6 +163,21 @@ def delete_cd(title):
 def api_delete_cd(title):
     p = delete(title)
     return json.dumps(p)
+
+# ----------------------------------------------- Atualizar CD --------------------------------
+# ----------------------------------------------- FRONTEND -------------------------
+@app.route('/update/<title>', methods=['POST'])
+def update_cd(title):
+    data = dict(request.form)
+    requests.post('http://localhost:5000/api/cds/'+ title, data=data)
+    return redirect('http://localhost:5000/cds/'+ title)
+
+# ----------------------------------------------- BACKEND -----------------------
+@app.route('/api/cds/<title>', methods=['POST'])
+def api_update_cd(title):
+    data = dict(request.form)
+    insert(data)
+    return json.dumps(find_all())
 
 # ----------------------------------------------- Procurar CD ---------------------------------
 @app.route('/', methods=['POST'])
