@@ -154,7 +154,7 @@ def api_post_cd():
 # Ainda Não operacionais
 # -------------------------------------------------  Apagar CD --------------------------------
 # ----------------------------------------------------FRONTEND
-@app.route('/delete/', methods=['POST'])
+@app.route('/delete/<title>', methods=['POST'])
 def remove(title):
     object = Object.query.get_or_404(title)
     delete(object)
