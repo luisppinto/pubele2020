@@ -156,8 +156,8 @@ def api_post_cd():
 # ----------------------------------------------------FRONTEND
 @app.route('/delete/<title>', methods=['POST'])
 def remove(title):
-    object = Object.query.get_or_404(title)
-    delete(object)
+    p = Object.query.get_or_404(title)
+    delete(p)
     return redirect('/')
 #@app.route('/cds/<title>', methods=['POST'])
 #def delete_cd(title):
