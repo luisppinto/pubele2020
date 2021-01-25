@@ -173,7 +173,7 @@ def update_cd(title):
     return redirect('http://localhost:5000/cds/'+ title)
 
 # ----------------------------------------------- BACKEND -----------------------
-@app.route('/api/cds/<title>', methods=['POST'])
+@app.route('/api/update/<title>', methods=['POST'])
 def api_update_cd(title):
     data = dict(request.form)
     insert(data)
