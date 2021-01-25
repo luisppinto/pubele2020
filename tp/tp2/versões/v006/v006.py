@@ -2,7 +2,8 @@
 from flask import Flask, render_template, request, redirect
 import json
 import requests
-import db_cd
+from db_cd import *
+import cds.bd
 import re
 
 # Lista Inicial de CDs - Catálogo
@@ -87,7 +88,7 @@ app = Flask(__name__) # required
 
 # Ciclo Auxiliar para inserir a lista inicial de CDs
 for cd in cds:
-	insert(cd)
+    insert(cd)
 
 
 # --------------------------- Home Page - Index - Lista de CDs -----------------------------
