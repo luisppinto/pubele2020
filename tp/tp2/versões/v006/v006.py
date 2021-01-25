@@ -3,7 +3,6 @@ from flask import Flask, render_template, request, redirect
 import json
 import requests
 from db_cd import *
-import cds.bd
 import re
 
 # Lista Inicial de CDs - Catálogo
