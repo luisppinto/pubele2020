@@ -151,14 +151,8 @@ def api_post_cd():
     insert(data)
     return json.dumps(find_all())
 
-# Ainda Não operacionais
 # -------------------------------------------------  Apagar CD --------------------------------
 # ----------------------------------------------------FRONTEND
-#@app.route('/delete/<title>', methods=['POST'])
-#def remove(title):
-#    p = Object.query.get_or_404(title)
-#    delete(p)
-#    return redirect('/')
 @app.route('/delete/<title>', methods=['POST'])
 def delete_cd(title):
     requests.post('http://localhost:5000/api/cds/'+ title)
@@ -169,3 +163,34 @@ def delete_cd(title):
 def api_delete_cd(title):
     p = delete(title)
     return json.dumps(p)
+
+# ----------------------------------------------- Procurar CD ---------------------------------
+@app.route('/', methods=['POST'])
+def procura_cd():
+    userinput = request.form.get('userinput')                       # Retorna o que o user põe no editbox
+    res = requests.get('http://localhost:5000/api/cds')             # Faz o request á API dos cds
+    ps = json.loads(res.content)                                    # conjunto de cds existentes
+    lista_cds_encontrados=[]
+
+    for title in ps:                                                # Por cada CD encontrado
+        cd=find_one(title)
+        res = requests.get('http://localhost:5000/api/cds/'+ title)
+        cd = json.loads(res.content)                                 # Encontra o cd por titulo
+        conteudo=cd                                                  # Vai buscar o conteudo do cd
+        res1=re.findall(rf"(?i)\b{userinput}\b",str(conteudo))          # Percorre á procura do userinput no conteudo
+        if res1:                                                     # Se for possivel correr o res
+            if title not in lista_cds_encontrados:                   # Se o titulo nao estiver na lista que foi armazenando os encontrados
+                lista_cds_encontrados.append(title)                  # Adiciona o titulo á lista
+    print(lista_cds_encontrados)
+
+    if (len(lista_cds_encontrados) == 1):
+        res2 = requests.get('http://localhost:5000/api/cds/' + lista_cds_encontrados[0])
+        cd = json.loads(res2.content)
+        print (cd)
+        return render_template('cd_view.html', p=cd) # com o cd
+
+
+    #else if (lista_cds_encontrados == 0):
+    #    return render_template('') # Não encontrado
+    #else
+    #    return render_template('') # Lista de encontrados ( titulo com link )

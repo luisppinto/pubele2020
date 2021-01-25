@@ -13,6 +13,9 @@
 <h2>Produtora: {{p['company']}}</h2>
 <h2>Descrição: {{p['description']}}</h2>
 <h2>Ano: {{p['year']}}</h2>
+<form action="/delete/{{p}}" method="post">
+  <button type ="submit"> Delete </button>
+</form>
 {% endblock %}
 
 {{p}}
