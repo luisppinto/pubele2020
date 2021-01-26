@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	{% block head %} {% endblock %}
+	<meta charset="utf-8">
+	<style>
+		body {background-color:#ECF9F9;
+			  width:100%;
+			  align-self: center;}
+		div.nav {width:75%;
+				align-self: center;
+				padding-left: 12.5%}
+		div.hed {}
+		table.tab_nav {width:100%;}
+		th.columnav{background-color:#C7DBED;
+			border:0.5px solid lightgrey;
+			height: 40px;
+			width:25%;
+		}
+	</style>
+
+</head>
+<body>
+					<form action="/" method='POST'>
+					<label>Procurar:</label><br>
+					<input type="text" name="userinput" placeholder="Procurar"><br>
+					<input type="submit" value="Submit">
+					</form>
+	<!-- Assume-se o Navigator é igual em todas as páginas do trabalho -->
+	<div class="nav">
+		<table class="tab_nav">
+			<tr>
+				<th class="columnav">
+					<a href="/"><div class="hed"> Lista CDs</div></a>
+				</th>
+				<th class="columnav">
+					<a href="/cds/novocd"><div class="hed">Adicionar CDs</div></a>
+				</th>
+				<th class="columnav">
+					<a href="/autores"><div class="hed">Informações Adicionais</div></a>
+				</th>
+			</tr>
+		</table>
+	</div>
+	<!-- Real conteudo que aparece sempre que invocamos outras funçoes  -->
+
+	{% block body %} {% endblock %}
+
+</body>
+</html>
