@@ -166,6 +166,8 @@ def api_delete_cd(title):
 
 # ----------------------------------------------- Atualizar CD --------------------------------
 # ----------------------------------------------- FRONTEND -------------------------
+# ----------------------------------------------- Atualizar CD --------------------------------
+# ----------------------------------------------- FRONTEND -------------------------
 @app.route('/update/<title>', methods=['GET'])
 def get_update_cd(title):
     res = requests.get('http://localhost:5000/api/cds/'+ title)
@@ -206,7 +208,7 @@ def procura_cd():
         i=0
         cds={}
         for i in range(len(lista_cds_encontrados)):
-            print(i)
+            print(i)            
             res3 = requests.get('http://localhost:5000/api/cds/' + lista_cds_encontrados[i])
             print (res3)
             cd = json.loads(res3.content)
@@ -214,7 +216,7 @@ def procura_cd():
             print (cds)
 
         print(cds)
-
+            
         return render_template('search_results.html', p=cds) # Lista de encontrados ( titulo com link )
 
     if (len(lista_cds_encontrados)<1):
