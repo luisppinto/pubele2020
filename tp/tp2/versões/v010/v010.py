@@ -166,7 +166,7 @@ def api_delete_cd(title):
 
 # ----------------------------------------------- Atualizar CD --------------------------------
 # ----------------------------------------------- FRONTEND -------------------------
-@app.route('/update/<title>', methods=['GET'])
+@app.route('/update/<title>', methods=['POST'])
 def get_update_cd(title):
     res = requests.get('http://localhost:5000/api/cds/'+ title)
     cd = json.loads(res.content)

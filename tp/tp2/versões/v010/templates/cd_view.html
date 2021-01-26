@@ -1,21 +1,64 @@
 {% extends 'base.html' %}
-<!-- O titulo passa a ser o nome do titulo do relatorio -->
-{% block head%} <title>{{p[title]}}</title>
+<!DOCTYPE html>
+<html>
+<style>
+* {
+  box-sizing: border-box;
+}
 
-{% endblock %}
+body {
+  margin: 0;
+}
+
+/* Create 2 equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50.00%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style>
+
+<!-- O titulo passa a ser o nome do titulo do relatorio -->
+<head>
+	<h1>{{p[title]}}</h1> 
+</head>
+
+<body>
+	<div class="row">
+
+  		<div class="column">
+    		<h2>Album Artwork</h2>
+    		<h2><img src={{p['artwork']}} ></h2>
+  		</div>
+  
+		<div class="column">
+			<h3>Artista:{{p['artist']}}</h3>
+			<h3>País:{{p['country']}}</h3>
+			<h3>Produtora:{{p['company']}}</h3>
+			<h3>Descrição:{{p['description']}}</h3>
+			<h3>Ano:{{p['year']}}</h3>
+			<h3>{{p['artwork']}}</h3>
+		</div>
+	</div>
+
+</body>
+
 
 <!-- Neste caso aparece o titulo e o valor associado ao titulo -->
-{% block body%}
-<h1>{{p['title']}}</h1>
-<h2><img src={{p['artwork']}} alt="Album Artwork"></h2>
-<h2>{{p['artist']}}</h2>
-<h2>País: {{p['country']}}</h2>
-<h2>Produtora: {{p['company']}}</h2>
-<h2>Descrição: {{p['description']}}</h2>
-<h2>Ano: {{p['year']}}</h2>
-<form action="/delete/{{p['title']}}" method="post">
-  <button type ="submit"> Delete </button>
-</form>
-{% endblock %}
-
 {{p}}
+
+</html>
