@@ -168,7 +168,7 @@ def api_delete_cd(title):
 # ----------------------------------------------- FRONTEND -------------------------
 @app.route('/update/<title>', methods=['GET'])
 def get_update_cd(title):
-    res = requests.get('http://localhost:5000/api/update/'+ title)
+    res = requests.get('http://localhost:5000/api/cds/'+ title)
     cd = json.loads(res.content)
     return render_template('atualiza_cd_view.html', p = cd)
 
