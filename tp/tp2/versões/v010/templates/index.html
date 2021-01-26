@@ -36,14 +36,14 @@
 
 {% for p in cds %}
 <div class="row">
-  <div class="column" style="background-color:#C7DBED;">
-  
+  <div class="column" style="background-color:#C7DBED";>
+
     <var><a href="/cds/{{p}}">{{p}}</a></var>
   </div>
-  <div class="column" style="background-color:#ECF9F9;">
+  <div class="column" style="background-color:#ECF9F9";>
     <p><img src={{p['artwork']}} ></p>
   </div>
-  <div class="column" style="background-color:#ECF9F9;">
+  <div class="column" style="background-color:#ECF9F9";>
      <th><form action="/update/{{p}}" method="post">
 						<button type ="submit"> Update </button>
 					</form>
