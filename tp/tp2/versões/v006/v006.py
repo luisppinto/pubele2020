@@ -166,6 +166,12 @@ def api_delete_cd(title):
 
 # ----------------------------------------------- Atualizar CD --------------------------------
 # ----------------------------------------------- FRONTEND -------------------------
+@app.route('/update/<title>', methods=['GET'])
+def get_update_cd(title):
+    res = requests.get('http://localhost:5000/api/cds/'+ title)
+    cd = json.loads(res.content)
+    return render_template('atualiza_cd_view.html', p = cd)
+
 @app.route('/update/<title>', methods=['POST'])
 def update_cd(title):
     data = dict(request.form)
@@ -182,6 +188,8 @@ def api_update_cd(title):
 # ----------------------------------------------- Procurar CD ---------------------------------
 @app.route('/', methods=['POST'])
 def procura_cd():
+    request.args.get('')
+
     userinput = request.form.get('userinput')                       # Retorna o que o user põe no editbox
     res = requests.get('http://localhost:5000/api/cds')             # Faz o request á API dos cds
     ps = json.loads(res.content)                                    # conjunto de cds existentes
