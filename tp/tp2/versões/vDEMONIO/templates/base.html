@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	{% block head %} {% endblock %}
+	<meta charset="utf-8">
+	<style>
+		body {background-color:#bdcebe;
+			  width:100%;
+			  align-self: center;}
+		div.nav {width:100%;
+				align-self: center;
+				padding-left: 12.5%}
+		div.hed {}
+		table.tab_nav {width:100%;}
+		th.columnav{background-color:#bdcebe;
+			border:0.5px solid lightgrey;
+			height: 40px;
+			width:25%;
+		}
+	</style>
+					<form action="/" method='POST'>
+					<label>Procurar:</label><br>
+					<input type="text" name="userinput" placeholder="Procurar"><br>
+					<input type="submit" value="Submit">
+					</form>
+	<!-- Assume-se o Navigator é igual em todas as páginas do trabalho -->
+    
+	<div class="nav">
+    <style>
+      button {
+        display: inline-block;
+        background-color: #ada397;
+        border-radius: 8px;
+        border: 4px double #cccccc;
+        color: #eeeeee;
+        text-align: center;
+        font-size: 15px;
+        padding: 15px;
+        width: 300px;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 10px;
+      }
+    </style>
+    <style>
+body {
+  font-family: Times New Roman;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+  <body>
+    <a href="/"><button type="button">Lista CDs</button></a>
+  </body>
+  
+  <body>
+    <a href="/cds/novocd"><button type="button">Adicionar CDs</button></a>
+  </body>
+  
+  <body>
+    <a href="/autores"><button type="button">Informações Adicionais</button></a>
+  </body>
+	
+	</div>
+    
+    
+	<!-- Real conteudo que aparece sempre que invocamos outras funçoes  -->
+
+	{% block body %} {% endblock %}
+
+</body>
+</html>
+

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block head%} <title> Search Results </title> {% endblock %}
+
+{% block body%}
+	<h1>Resultados da Pesquisa</h1>
+	{% for cd in p: %}
+		<a href="/cds/{{p[cd]}}">{{p[cd]}}</a>
+	{% endfor %}
+{% endblock %}
+
+

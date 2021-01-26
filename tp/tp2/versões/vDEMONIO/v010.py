@@ -1,9 +1,11 @@
+# Imports
 from flask import Flask, render_template, request, redirect
 import json
 import requests
-from db_cds import *
-from dbcds2 import *
+from db_cd import *
+import re
 
+# Lista Inicial de CDs - Catálogo
 cds = [
     {
         'id': 0,
@@ -74,81 +76,147 @@ cds = [
         'company': 'Elektra',
         'description': 'Picture Book is the debut album by British pop and soul group Simply Red, released in October 1985.',
         'year': '1985'
-    }
-]
-
-autores = [ {'name': 'Bruno Rebelo Lopes', 'number': '57768'},
+    }]
+# Lista de Autores
+autores = [
+    {'name': 'Bruno Rebelo Lopes', 'number': '57768'},
 			{'name':'Morgana Sacramento Ferreira','number':'93779'},
 			{'name':'Luís Pedro da Silva Pinto','number':'83016'}]
 
 app = Flask(__name__) # required
 
+# Ciclo Auxiliar para inserir a lista inicial de CDs
 for cd in cds:
-	insert(cd)
+    insert(cd)
 
-	# Informações adicionais
 
-		# FRONT END
-        # Lista CDs
+# --------------------------- Home Page - Index - Lista de CDs -----------------------------
+# ----------------------------------------------------FRONTEND
 @app.route('/', methods=['GET'])
 def index_view():
     res = requests.get('http://localhost:5000/api/cds')
     ps = json.loads(res.content)
     return render_template('index.html', cds=ps)
 
-@app.route('/', methods=['POST'])
-def delete_cd():
-    requests.post('http://localhost:5000/api/cds')
-    return render_template('index.html')
+# ----------------------------------------------------BACKEND
+@app.route('/api/cds', methods=['GET'])
+def api_get_cds():
+    ps = find_all()
+    return json.dumps(ps)
 
-
-        # Lista autores
+# ------------------ Lista de Autores - Informações Adicionais -----------------------------
+# ----------------------------------------------------FRONTEND
 @app.route('/autores', methods=['GET'])
 def info_ad_view():
 	res = requests.get('http://localhost:5000/api/autores')
 	ss = json.loads(res.content)
 	return render_template('info_ad_view.html', autores=ss)
 
-	   # CD Individual
+# ----------------------------------------------------BACKEND
+@app.route('/api/autores', methods=['GET'])
+def api_get_autores():
+    ss = autores
+    return json.dumps(ss)
+
+# ---------------------------------------------------- View CD --------------------------------
+# ----------------------------------------------------FRONTEND
 @app.route('/cds/<title>', methods=['GET'])
 def get_cd_view(title):
-    res = requests.get('http://localhost:5000/api/cds'+title)
+    res = requests.get('http://localhost:5000/api/cds/' + title)
     cd = json.loads(res.content)
     return render_template('cd_view.html', p=cd)
 
-@app.route('/cds/novocd')
-def novo_cd_view():
-    return render_template('add_cd_view.html')
-
-        # BACKEND
-        # Lista CDs
-@app.route('/api/cds', methods=['GET'])
-def api_get_cds():
-    ps = find_all()
-    return json.dumps(ps)
-
-		# Lista autores
-@app.route('/api/autores', methods=['GET'])
-def api_get_autores():
-	ss = autores
-	return json.dumps(ss)
-
-        # CD Individual
+# ----------------------------------------------------BACKEND
 @app.route('/api/cds/<title>', methods=['GET'])
 def api_get_cd(title):
     p = find_one(title)
     return json.dumps(p)
 
-        # Inserir CD
-@app.route('/api/cds/novocd', methods=['POST'])
+# ------------------------------------------------- Add New CD --------------------------------
+# ----------------------------------------------------FRONTEND
+@app.route('/cds/novocd')
+def new_cd_view():
+    return render_template('add_cd_view.html')
+
+@app.route('/cds/novocd',methods=['POST'])
+def post_cd():
+    data = dict(request.form)
+    requests.post('http://localhost:5000/api/cds/novocd', data=data)
+    return redirect('http://localhost:5000/')
+# ----------------------------------------------------BACKEND
+
+@app.route('/api/cds/novocd',methods=['POST'])
 def api_post_cd():
     data = dict(request.form)
     insert(data)
-    return json.dumps(data)
+    return json.dumps(find_all())
 
-    #Remove CD
+# -------------------------------------------------  Apagar CD --------------------------------
+# ----------------------------------------------------FRONTEND
+@app.route('/delete/<title>', methods=['POST'])
+def delete_cd(title):
+    requests.post('http://localhost:5000/api/cds/'+ title)
+    return redirect('http://localhost:5000/')
+
+# ----------------------------------------------------BACKEND
 @app.route('/api/cds/<title>', methods=['POST'])
-def api_delete_relatório(title):
+def api_delete_cd(title):
+    p = delete(title)
+    return json.dumps(p)
 
-    d = delete(title)
-    return json.dumps(d)
+# ----------------------------------------------- Atualizar CD --------------------------------
+# ----------------------------------------------- FRONTEND -------------------------
+@app.route('/update/<title>', methods=['GET'])
+def get_update_cd(title):
+    res = requests.get('http://localhost:5000/api/cds/'+ title)
+    cd = json.loads(res.content)
+    return render_template('atualiza_cd_view.html', p = cd)
+
+@app.route('/update/<title>', methods=['POST'])
+def update_cd(title):
+    data = dict(request.form)
+    requests.post('http://localhost:5000/api/update/'+ title, data=data)
+    return redirect('http://localhost:5000/cds/'+ title)
+
+# ----------------------------------------------- Procurar CD ---------------------------------
+@app.route('/', methods=['POST'])
+def procura_cd():
+    userinput = request.form.get('userinput')                       # Retorna o que o user põe no editbox
+    res = requests.get('http://localhost:5000/api/cds')             # Faz o request á API dos cds
+    ps = json.loads(res.content)                                    # conjunto de cds existentes
+    lista_cds_encontrados=[]
+
+    for title in ps:                                                # Por cada CD encontrado
+        cd=find_one(title)
+        res = requests.get('http://localhost:5000/api/cds/'+ title)
+        cd = json.loads(res.content)                                 # Encontra o cd por titulo
+        conteudo=cd                                                  # Vai buscar o conteudo do cd
+        res1=re.findall(rf"(?i)\b{userinput}\b",str(conteudo))          # Percorre á procura do userinput no conteudo
+        if res1:                                                     # Se for possivel correr o res
+            if title not in lista_cds_encontrados:                   # Se o titulo nao estiver na lista que foi armazenando os encontrados
+                lista_cds_encontrados.append(title)                  # Adiciona o titulo á lista
+
+    if (len(lista_cds_encontrados) == 1):
+        res2 = requests.get('http://localhost:5000/api/cds/' + lista_cds_encontrados[0])
+        cd = json.loads(res2.content)
+        return render_template('cd_view.html', p=cd) # com o cd
+
+    elif (len(lista_cds_encontrados)>1):
+        print(lista_cds_encontrados)
+        i=0
+        cds={}
+        for i in range(len(lista_cds_encontrados)):
+            print(i)
+            res3 = requests.get('http://localhost:5000/api/cds/' + lista_cds_encontrados[i])
+            print (res3)
+            cd = json.loads(res3.content)
+            cds[i] = cd['title']
+            print (cds)
+
+        print(cds)
+
+        return render_template('search_results.html', p=cds) # Lista de encontrados ( titulo com link )
+
+    if (len(lista_cds_encontrados)<1):
+        flash ('No results found!')
+        return redirect ('/') # Não encontrado
