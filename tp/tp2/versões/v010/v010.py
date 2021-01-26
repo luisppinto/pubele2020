@@ -175,10 +175,8 @@ def get_update_cd(title):
 @app.route('/update/<title>', methods=['POST'])
 def update_cd(title):
     data = dict(request.form)
-    requests.post('http://localhost:5000/api/cds/novocd', data=data)
-    insert(data)
+    requests.post('http://localhost:5000/api/update/'+ title, data=data)
     return redirect('http://localhost:5000/cds/'+ title)
-    
 
 # ----------------------------------------------- Procurar CD ---------------------------------
 @app.route('/', methods=['POST'])
