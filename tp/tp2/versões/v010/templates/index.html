@@ -21,17 +21,15 @@
     		</div>
 
    			<div class = 'column2'>
-					<div class= 'column3'>
    				<form action="/update/{{p}}" method="get">
 					<button type ="submit"> Update </button>
 				</form>
 				  <form action="/delete/{{p}}" method="post">
 					  <button type ="submit"> Delete </button>
 				  </form>
-					</div>
 		    </div>
 		</div>
-		<th>
+		<hr>
 	{% endfor %}
 </div>
 
