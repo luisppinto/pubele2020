@@ -3,31 +3,30 @@
 <head>
  	{% block head %} {% endblock %}
 	<meta charset="utf-8">
-	<style>
-		body {background-color:#bdcebe;
-			  width:100%;
-			  align-self: center;}
-		div.nav {width:100%;
-				align-self: center;
-				padding-left: 12.5%}
-		div.hed {}
-		table.tab_nav {width:100%;}
-		th.columnav{background-color:#bdcebe;
-			border:0.5px solid lightgrey;
-			height: 40px;
-			width:25%;
-		}
-	</style>
-					<form action="/" method='POST'>
-					<label>Procurar:</label><br>
-					<input type="text" name="userinput" placeholder="Procurar"><br>
-					<input type="submit" value="Submit">
-					</form>
-	<!-- Assume-se o Navigator é igual em todas as páginas do trabalho -->
-    
-	<div class="nav">
-    <style>
-      button {
+<style>
+body {
+      font-family: Times New Roman;
+      background-color:#bdcebe;
+      width:80%;
+      align-self: center;
+      padding-left:10%;
+  }
+  
+div.nav {
+        width:100%;
+        align-self: center;
+        padding-left: 10%}}
+
+table.tab_nav {width:100%;
+	padding-bottom: 50px;
+}
+
+th.columnav{background-color:#ada397;
+      border:0.5px solid lightgrey;
+      height: 60px;
+      width:25%;
+    }
+button {
         display: inline-block;
         background-color: #ada397;
         border-radius: 8px;
@@ -42,68 +41,51 @@
         -o-transition: all 0.5s;
         transition: all 0.5s;
         cursor: pointer;
-        margin: 10px;
-      }
-    </style>
-    <style>
-body {
-  font-family: Times New Roman;
+
+     }
+     
+/* Create three equal columns that floats next to each other */
+div.contents {
+  width:80%;
 }
 
-* {
-  box-sizing: border-box;
+div.column1 {
+  width:30%;
+  max-height: 150px;
+  float:left;
+}
+div.column2 {
+  width:40%;
+ 	max-height: 150px;
+  float:left;
+
+}
+div.column3 {
+  width:  100px;
+	max-height: 150px;
+  float:left;
 }
 
-form.example input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
-}
-
-form.example button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
-}
-
-form.example button:hover {
-  background: #0b7dda;
-}
-
-form.example::after {
-  content: "";
-  clear: both;
-  display: table;
-}
 </style>
-  <body>
-    <a href="/"><button type="button">Lista CDs</button></a>
-  </body>
-  
-  <body>
-    <a href="/cds/novocd"><button type="button">Adicionar CDs</button></a>
-  </body>
-  
-  <body>
-    <a href="/autores"><button type="button">Informações Adicionais</button></a>
-  </body>
-	
-	</div>
-    
-    
-	<!-- Real conteudo que aparece sempre que invocamos outras funçoes  -->
 
-	{% block body %} {% endblock %}
+</head>
+<body>
+					<form action="/" method='POST'>
+					<label>Procurar:</label><br>
+					<input type="text" name="userinput" placeholder="Procurar"><br>
+					<input type="submit" value="Submit">
+					</form>
+	<!-- Assume-se o Navigator é igual em todas as páginas do trabalho -->
+  <div class="nav">
+    <table class="tab_nav">
+      <tr>
+        <th class="columnav"> <a href="/"><div class="hed"> Lista CDs</div></a></th>
+        <th class="columnav"> <a href="/cds/novocd"><div class="hed">Adicionar CDs</div></a></th>
+        <th class="columnav"> <a href="/autores"><div class="hed">Informações Adicionais</div></a></th>
+      </tr>
+    </table>
+  </div>
+	<!-- Real conteudo que aparece sempre que invocamos outras funçoes  -->
+  {% block body %} {% endblock %}
 
 </body>
-</html>
-
