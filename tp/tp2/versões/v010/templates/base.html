@@ -66,11 +66,7 @@ div.column2 {
 
 </head>
 <body>
-					<form action="/" method='POST'>
-					<input type="text" name="userinput" placeholder="Procurar"><br>
-					<input type="submit" value="Submit">
-					</form>
-          <hr>
+
 	<!-- Assume-se o Navigator é igual em todas as páginas do trabalho -->
   <div class="nav">
     <table class="tab_nav">
@@ -81,6 +77,11 @@ div.column2 {
       </tr>
     </table>
   </div>
+  <form action="/" method='POST'>
+  <input type="text" name="userinput" placeholder="Procurar"><br>
+  <input type="submit" value="Submit">
+  </form>
+  <hr>
 	<!-- Real conteudo que aparece sempre que invocamos outras funçoes  -->
   {% block body %} {% endblock %}
 
