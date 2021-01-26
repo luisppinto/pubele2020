@@ -169,7 +169,7 @@ def api_delete_cd(title):
 @app.route('/update/<title>', methods=['POST'])
 def update_cd(title):
     data = dict(request.form)
-    requests.post('http://localhost:5000/api/cds/'+ title, data=data)
+    requests.post('http://localhost:5000/api/update/'+ title, data=data)
     return redirect('http://localhost:5000/cds/'+ title)
 
 # ----------------------------------------------- BACKEND -----------------------
