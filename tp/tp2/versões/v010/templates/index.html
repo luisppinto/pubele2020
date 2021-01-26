@@ -14,12 +14,12 @@
 <div class='contents'>
 <div class="extrow">
 	{% for p in cds %}
-	
+
 		<div class="introw">
     		<div class="column1">
     			<a href="/cds/{{p}}">{{p}}</a>
     		</div>
-        
+
    			<div class = 'column2'>
    				<form action="/update/{{p}}" method="get">
 					<button type ="submit"> Update </button>
@@ -29,7 +29,7 @@
 				  </form>
 		    </div>
 		</div>
-
+		<th>
 	{% endfor %}
 </div>
 
