@@ -13,7 +13,7 @@
     	<div class="column1">
           <a><img src={{p['artwork']}} alt="Album Artwork"></a>
     	</div>
-  
+
   <div class = "column2">
     <h3>Artista:{{p['artist']}}</h3>
     <h3>País: {{p['country']}}</h3>
@@ -24,9 +24,9 @@
       <button type ="submit"> Update </button>
     </form>
     <form action="/delete/{{p['title']}}" method="post">
-      <button type ="submit"> Delete </button>
+      <button style="background-color:#ad1d1d" type ="submit"> Delete </button>
     </form>
-    
+
   </div>
 </div>
 {% endblock %}
