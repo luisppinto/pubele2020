@@ -12,11 +12,11 @@
 		<label>Título</label><br>
 		<input type="text" value="{{p[title]}}" name="title" disabled><br>
 		<label>Artista</label><br>
-		<input type="text" name="artist"><br>
+		<input type="text" value="{{p[artist]}}" name="artist"><br>
 		<label>Artwork</label><br>
 		<input type="text" name="artwork"><br>
 		<label>País</label><br>
-    <input list="countries" name="country">
+    <input list="countries" value="{{p[country]}}" name="country">
     <datalist id="countries">
         <option value="Afghanistan" />
         <option value="Albania" />
@@ -259,11 +259,11 @@
         <option value="Zimbabwe" />
     </datalist><br>
 		<label>Produtora</label><br>
-		<input type="text" name="company"><br>
+		<input type="text" value="{{p[company]}}" name="company"><br>
 		<label>Descrição</label><br>
-    <textarea name="description" style="width:200px"></textarea><br>
+    <textarea name="description" value="{{p[description]}}" style="width:200px"></textarea><br>
 		<label>Ano</label><br>
-		<input type="text" name="year"><br>
+		<input type="text" value="{{p[year]}}" name="year"><br>
 		<input type="submit" value="Submit">
 	</form>
 {% endblock %}
