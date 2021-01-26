@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+<!-- O titulo passa a ser o nome do titulo do relatorio -->
+{% block head%} <title>{{p[title]}}</title>
+
+{% endblock %}
+
+<!-- Neste caso aparece o titulo e o valor associado ao titulo -->
+{% block body%}
+<h1>{{p['title']}}</h1>
+<h2><img src={{p['artwork']}} alt="Album Artwork"></h2>
+<h2>{{p['artist']}}</h2>
+<h2>País: {{p['country']}} <img src="https://flagcdn.com/h20/{{p['country']}}.png" alt="Bandeira"></h2>
+<h2>Produtora: {{p['company']}}</h2>
+<h2>Descrição: {{p['description']}}</h2>
+<h2>Ano: {{p['year']}}</h2>
+<form action="/delete/{{p['title']}}" method="post">
+  <button type ="submit"> Delete </button>
+</form>
+{% endblock %}
+
+{{p}}

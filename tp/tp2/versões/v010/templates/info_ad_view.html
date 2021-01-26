@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head%} <title> Informaçoes Adicionais </title> {% endblock %}
+<!--
+
+	Neste caso no body aparece algum conteudo sobre o motivo do projecto e a lista de autores para o mesmo.
+
+-->
+{% block body%}
+<h1>Enquadramento do Projeto</h1>
+	<p>É apresentado o trabalho prático 2 da cadeira de Publicação Eletrónica. </p>
+<h1>Lista de Autores do Projeto</h1>
+<ul>
+    {% for autor in autores: %}
+        <li><p>{{autor.name}}</p><p>{{autor.number}}</p></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

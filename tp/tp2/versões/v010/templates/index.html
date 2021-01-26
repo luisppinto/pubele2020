@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block head%} <title>Homepage</title>
+
+	<style>
+		body {background-color:#ECF9F9;
+			  width:100%;
+			  align-content: center;}
+		div.nav {width:75%;
+				align-self: center;
+				padding-left: 12.5%}
+		div.hed {padding-top: 15px;
+				padding-bottom: 15px;
+				text-align:center;
+				margin-top:5px;
+				font-size: 20px;
+				color: black;
+				border-radius: 20px;}
+		table.tab_nav {width:100%;}
+		th.columnav{background-color:#C7DBED;
+			border:0.5px solid lightgrey;
+			height: 40px;
+			width:25%;}
+		div.contents {
+
+			width:100%;
+			padding-top: 50px;
+			padding-bottom:50px;
+			padding-left:12.5%;
+			align-content: center;}
+		table.content {
+			border-radius: 20px;
+			background-color:#C7DBED;
+			width:75%;
+			padding-top:75px;
+			padding-bottom:75px;
+			align-content: center;}
+
+
+
+	</style>
+{% endblock %}
+<!--
+
+	Neste caso no body aparece a lista de relatórios como link para "ver relatório".( posteriormente em ver relatorio adicionamos tudo a caixas de texto de modo a ser editavel e podemos até ter uma primeira versão nao editavel e depois um botao para entrar em modo editavel)
+	Na mesma linha do titulo é adicionado um botão para o apagar.
+	O botão remover deve apagar o titulo e o relatório a ele associado e devolver a mesma página sem esse elemento
+
+-->
+<!-- Falta aqui a parte de procurar o relatório -->
+{% block body%}
+<div class='contents'>
+	<table class='content'>
+
+	{% for p in cds %}
+			<tr>
+				<th>
+					<a href="/cds/{{p}}">{{p}}</a>
+				</th>
+				<th>
+					<form action="/delete/{{p}}" method="post">
+						<button type ="submit"> Delete </button>
+					</form>
+				</th>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}
