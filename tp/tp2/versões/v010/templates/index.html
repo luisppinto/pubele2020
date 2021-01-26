@@ -19,15 +19,11 @@
     		<div class="column1">
     			<a href="/cds/{{p}}">{{p}}</a>
     		</div>
-
-    		<div class ='column2'>
-    			<p><img src={{p['artwork']}} ></p>
-    		</div>
         
-   			<div class = 'column3'>
-				  <form action="/update/{{p}}" method="get">
-					  <button type ="submit"> Update </button>
-				  </form>
+   			<div class = 'column2'>
+   				<form action="/update/{{p}}" method="get">
+					<button type ="submit"> Update </button>
+				</form>
 				  <form action="/delete/{{p}}" method="post">
 					  <button type ="submit"> Delete </button>
 				  </form>
@@ -35,6 +31,6 @@
 		</div>
 
 	{% endfor %}
-	</div>
+</div>
 
 {% endblock %}

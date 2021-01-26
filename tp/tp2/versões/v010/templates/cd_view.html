@@ -7,18 +7,28 @@
 <!-- Neste caso aparece o titulo e o valor associado ao titulo -->
 {% block body%}
 <h1>{{p['title']}}</h1>
-<h2><img src={{p['artwork']}} alt="Album Artwork"></h2>
-<h2>{{p['artist']}}</h2>
-<h2>País: {{p['country']}}</h2>
-<h2>Produtora: {{p['company']}}</h2>
-<h2>Descrição: {{p['description']}}</h2>
-<h2>Ano: {{p['year']}}</h2>
-<form action="/update/{{p['title']}}" method="post">
-  <button type ="submit"> Update </button>
-</form>
-<form action="/delete/{{p['title']}}" method="post">
-  <button type ="submit"> Delete </button>
-</form>
+
+<div class="extrow">
+   	<div class="introw">
+    	<div class="column1">
+          <a><img src={{p['artwork']}} alt="Album Artwork"></a>
+    	</div>
+  
+  <div class = "column2">
+    <h3>Artista:{{p['artist']}}</h3>
+    <h3>País: {{p['country']}}</h3>
+    <h3>Produtora: {{p['company']}}</h3>
+    <h3>Descrição: {{p['description']}}</h3>
+    <h3>Ano: {{p['year']}}</h3>
+    <form action="/update/{{p['title']}}" method="post">
+      <button type ="submit"> Update </button>
+    </form>
+    <form action="/delete/{{p['title']}}" method="post">
+      <button type ="submit"> Delete </button>
+    </form>
+    
+  </div>
+</div>
 {% endblock %}
 
 {{p}}
