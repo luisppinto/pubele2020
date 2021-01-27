@@ -20,9 +20,9 @@
     <h3>Produtora: {{p['company']}}</h3>
     <h3>Descrição: {{p['description']}}</h3>
     <h3>Ano: {{p['year']}}</h3>
-    <form action="/update/{{p.title}}" method="post">
+    <a href="/update/{{p.title}}">
       <button type ="submit"> Update </button>
-    </form>
+    </a>
     <form action="/delete/{{p['title']}}" method="post">
       <button style="background-color:#a63a3a" type ="submit"> Delete </button>
     </form>
